@@ -5,17 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kiva Ecosystem 2026 — Design System</title>
 <style>
-/* Fonts: place .otf files in same folder as this HTML file */
-@font-face{font-family:'DMB';font-weight:400;src:url('44829.otf') format('opentype');}
-@font-face{font-family:'DMB';font-weight:500;src:url('44831.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:300;src:url('KivaPostGrot-Light.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:300;font-style:italic;src:url('KivaPostGrot-LightItalic.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:400;src:url('KivaPostGrot-Book.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:400;font-style:italic;src:url('KivaPostGrot-BookItalic.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:500;src:url('KivaPostGrot-Medium.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:500;font-style:italic;src:url('KivaPostGrot-MediumItalic.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:700;src:url('KivaPostGrot-Bold.otf') format('opentype');}
-@font-face{font-family:'KPG';font-weight:700;font-style:italic;src:url('KivaPostGrot-BoldItalic.otf') format('opentype');}
+/* Kiva typefaces — Dovetail MVB (display + headlines + blockquote) and Kiva Post Grotesk (UI + body) */
+@font-face{font-family:'DMB';font-weight:400;src:url('fonts/44829.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'DMB';font-weight:500;src:url('fonts/44831.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:300;src:url('fonts/KivaPostGrot-Light.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:300;font-style:italic;src:url('fonts/KivaPostGrot-LightItalic.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:400;src:url('fonts/KivaPostGrot-Book.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:400;font-style:italic;src:url('fonts/KivaPostGrot-BookItalic.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:500;src:url('fonts/KivaPostGrot-Medium.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:500;font-style:italic;src:url('fonts/KivaPostGrot-MediumItalic.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:700;src:url('fonts/KivaPostGrot-Bold.otf') format('opentype');font-display:swap;}
+@font-face{font-family:'KPG';font-weight:700;font-style:italic;src:url('fonts/KivaPostGrot-BoldItalic.otf') format('opentype');font-display:swap;}
 
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -293,8 +293,9 @@ nav button.on{border-bottom-color:transparent;}
 
 /* ── Phase 2 additions ──────────────────────────────────────── */
 
-/* Toolbar (search + export) */
-.toolbar{position:sticky;top:48px;background:#fafafa;border-bottom:1px solid #EFEFEF;padding:10px 40px;display:flex;align-items:center;gap:12px;z-index:99;}
+/* Toolbar (search + export) — inner container aligns to main content's right margin */
+.toolbar{position:sticky;top:48px;background:#fafafa;border-bottom:1px solid #EFEFEF;padding:10px 0;z-index:99;}
+.toolbar-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;}
 .search-wrap{flex:1;max-width:420px;position:relative;}
 .search-wrap input{width:100%;height:34px;padding:0 32px 0 34px;border:1px solid #E0E0E0;border-radius:18px;background:#fff;font-family:'KPG',sans-serif;font-size:12px;color:#223829;outline:none;transition:border-color .15s,box-shadow .15s;}
 .search-wrap input:focus{border-color:#2AA967;box-shadow:0 0 0 3px rgba(42,169,103,.12);}
@@ -362,7 +363,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
   <div class="head-main">
     <div class="logo">Kiva</div>
     <h1>Ecosystem 2026 — Design System</h1>
-    <p>Canonical token reference for the Kiva product platform. Values resolved from the Figma variable library (<code>Alias - *</code>) and the <code>@kiva/kv-tokens</code> package.</p>
+    <p>Canonical token reference for the Kiva product platform.</p>
   </div>
   <div class="byline" aria-label="Document attribution">
     <span class="label">Authored by</span>
@@ -385,13 +386,15 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
 </nav>
 
 <div class="toolbar">
-  <div class="search-wrap" id="searchWrap">
-    <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="4.2"/><line x1="10.4" y1="10.4" x2="14" y2="14"/></svg>
-    <input id="searchInput" type="search" placeholder="Search tokens, hex, classes…  (press / to focus, Esc to clear)" autocomplete="off">
-    <button class="clear" onclick="clearSearch()" title="Clear">×</button>
+  <div class="toolbar-inner">
+    <div class="search-wrap" id="searchWrap">
+      <svg class="icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="4.2"/><line x1="10.4" y1="10.4" x2="14" y2="14"/></svg>
+      <input id="searchInput" type="search" placeholder="Search tokens, hex, classes…  (press / to focus, Esc to clear)" autocomplete="off">
+      <button class="clear" onclick="clearSearch()" title="Clear">×</button>
+    </div>
+    <span class="search-count" id="searchCount"></span>
+    <button class="btn-toolbar alt" onclick="openExport()" style="margin-left:auto;">Export tokens ↓</button>
   </div>
-  <span class="search-count" id="searchCount"></span>
-  <button class="btn-toolbar alt" onclick="openExport()">Export tokens ↓</button>
 </div>
 
 <main>

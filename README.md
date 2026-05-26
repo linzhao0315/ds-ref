@@ -30,9 +30,14 @@ The named editorial authorities hold the right to interpret, clarify, and approv
 - Click **Export tokens** to download the full token set as JSON, CSS variables, Tailwind config, or AI prompt bundle.
 - Press `/` to focus search · arrow keys to navigate panels.
 
-## Notes on rendering
+## Typefaces
 
-The Kiva typefaces (Dovetail MVB, Kiva Post Grotesk) are proprietary and not bundled with this reference. The page falls back to system fonts (system-ui and Georgia). The token specifications and visual structure remain accurate; only the displayed typeface differs.
+The reference is rendered in the two Kiva typefaces:
+
+- **Dovetail MVB** (`fonts/44829.otf` — Regular 400, `fonts/44831.otf` — Medium 500). Used for Display, Headline 1, Headline 2, and Blockquote.
+- **Kiva Post Grotesk** (`fonts/KivaPostGrot-*.otf` — 8 weight/style files: Light, Light Italic, Book, Book Italic, Medium, Medium Italic, Bold, Bold Italic). Used for Subheadline, Title, Base, Button, Label, Caption, Upper, Small.
+
+These typefaces are part of the Kiva visual identity and are subject to their own licensing terms. Use outside this reference requires permission from the editorial authority listed above.
 
 ## License
 
