@@ -1,0 +1,40 @@
+Copyright © 2026 Lin Zhao and Kiva. All rights reserved.
+
+This document — the Kiva Ecosystem 2026 Design System reference — is
+authored by Lin Zhao. Editorial authority for interpretation, clarification,
+and approval of changes is held jointly by Lin Zhao and Biju Baek.
+
+This reference is published openly so that designers, engineers, and AI
+tooling working on the Kiva platform can consult an authoritative,
+versioned source of truth for the design token system.
+
+PERMITTED USES
+
+- Viewing, linking to, and consulting this reference for the purpose of
+  building, reviewing, or documenting Kiva product surfaces.
+- Embedding individual tokens or values into derivative design and
+  engineering work targeting the Kiva platform.
+- Quoting limited excerpts in internal documentation, slide decks, and
+  reviews, with attribution to the authors above.
+
+RESTRICTED USES
+
+- Republication of this reference, in whole or in substantial part, on
+  external sites or in commercial products is not permitted without
+  prior written permission from the editorial authority listed above.
+- Removal or obscuring of the attribution block is not permitted.
+- Use of the Kiva name, logo, or proprietary typefaces (Dovetail MVB,
+  Kiva Post Grotesk) is governed separately and is not granted by this
+  license.
+
+ATTRIBUTION
+
+When referencing this work, please credit:
+    "Kiva Ecosystem 2026 Design System, authored by Lin Zhao
+     (editorial authority: Lin Zhao, Biju Baek)."
+
+NO WARRANTY
+
+This reference is provided "as is", without warranty of any kind, express
+or implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose, or noninfringement.

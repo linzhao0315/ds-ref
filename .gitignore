@@ -1,0 +1,14 @@
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*~
+
+# Proprietary fonts — not bundled with this public reference
+*.otf
+*.ttf
+*.woff
+*.woff2
+
+# Local preview symlinks
+kiva-design-preview
