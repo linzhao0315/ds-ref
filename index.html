@@ -237,8 +237,8 @@ nav button.on{border-bottom-color:transparent;}
 .bpg-bg-tabs{display:flex;gap:4px;}
 .bpg-bg-tabs button{flex:1;padding:6px 8px;font-size:10px;font-family:'KPG',sans-serif;border:1px solid #E0E0E0;background:#fff;color:#505050;border-radius:4px;cursor:pointer;}
 .bpg-bg-tabs button.on{background:#223829;color:#EDF4F1;border-color:#223829;}
-.bpg-export{display:flex;gap:6px;}
-.bpg-export button{flex:1;padding:9px 10px;font-size:11px;font-weight:500;font-family:'KPG',sans-serif;border:none;border-radius:6px;cursor:pointer;background:#276A43;color:#EDF4F1;}
+.bpg-export{display:grid;grid-template-columns:1fr 1fr 38px;gap:6px;}
+.bpg-export button{min-width:0;min-height:34px;padding:8px 9px;font-size:11px;font-weight:500;line-height:1.2;font-family:'KPG',sans-serif;border:none;border-radius:6px;cursor:pointer;background:#276A43;color:#EDF4F1;white-space:normal;}
 .bpg-export button.alt{background:#fff;color:#223829;border:1px solid #223829;}
 .bpg-export button:hover{background:#223829;color:#EDF4F1;}
 .bpg-export button.alt:hover{background:#EDF4F1;color:#223829;border-color:#276A43;}
@@ -422,7 +422,8 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
     <!-- Scale & HTML -->
     <div id="ts" class="sub-panel on">
       <div class="info">
-        <strong>Heading levels h1–h4 for hierarchy; h5 is reserved for Upper (tags · status badges).</strong> For deeper content hierarchy, use a semantic text element + utility class instead (<code>&lt;p class="tw-text-title"&gt;</code>, <code>&lt;label class="tw-text-label"&gt;</code>, <code>&lt;span class="tw-text-caption"&gt;</code>).<br>
+        <strong>Default document flow uses h1–h4 only.</strong> For deeper content hierarchy, use a semantic text element + utility class instead (<code>&lt;p class="tw-text-title"&gt;</code>, <code>&lt;label class="tw-text-label"&gt;</code>, <code>&lt;span class="tw-text-caption"&gt;</code>).<br>
+        <strong>h5 is a limited exception</strong> for Upper labels (tags · status badges) and Contentful shifted mapping only. <strong>Do not use h6.</strong><br>
         In <strong>Contentful</strong> editing, headings shift down one level (Display occupies h1, Title shifts to h5). See the Contentful Shifted Header Mapping below.<br>
         All sizes in px. Letter-spacing in px. Line-heights in px. Values from <code>Alias - Text_Spacing_Layout</code> token files.
       </div>
@@ -496,7 +497,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           </tr>
           <tr>
             <td><span class="tok">button</span></td>
-            <td><code>&lt;button&gt;</code> <span class="tw">tw-text-button</span></td>
+            <td><code>&lt;button&gt;</code> <span class="tw">tw-text-button-link</span></td>
             <td><span class="sans" style="font-size:14px;font-weight:500;">CTA labels · primary buttons</span></td>
             <td class="mv">16</td><td class="mv">16</td><td class="mv">16</td>
             <td class="mv">21</td>
@@ -560,7 +561,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           </tr>
         </tbody>
       </table>
-      <p class="note">Mob = XS+SM (0–733px, base — no Tailwind prefix) · Tab = MD (734px+, <span class="tw">tw-md:</span>) · Desk = LG+XL (1024px+, <span class="tw">tw-lg:</span>). L.H. and Track. shown as Mob / Tab / Desk when values differ.<br><span style="display:inline-block;margin-top:5px;"><strong>HTML element defaults (addBase):</strong> <code>h1</code>→<span class="tw">tw-text-headline</span> · <code>h2</code>→<span class="tw">tw-text-headline-two</span> · <code>h3</code>→<span class="tw">tw-text-subheadline</span> · <code>h4</code>→<span class="tw">tw-text-title</span> · <code>h5</code>→<span class="tw">tw-text-upper</span> · <code>body</code>→<span class="tw">tw-text-base</span> · <code>p</code>→<span class="tw">tw-text-base</span> · <code>a</code>→<span class="tw">tw-text-link</span> · <code>blockquote</code>→<span class="tw">tw-text-blockquote</span> · <code>figure figcaption</code>→<span class="tw">tw-text-caption</span> · <code>small</code>→<span class="tw">tw-text-small</span> · <code>label</code>→<span class="tw">tw-text-label</span>.</span><br><span style="display:inline-block;margin-top:4px;"><strong>Available TW font weights:</strong> <span class="tw">tw-font-light</span> (300) · <span class="tw">tw-font-normal</span> (Book/400) · <span class="tw">tw-font-medium</span> (500) · <span class="tw">tw-font-book</span> (legacy alias = light). <strong style="color:#E0988D;">tw-font-bold does not exist</strong> — Bold 700 is not in the Tailwind config fontWeight.</span></p>
+      <p class="note">Mob = XS+SM (0–733px, base — no Tailwind prefix) · Tab = MD (734px+, <span class="tw">tw-md:</span>) · Desk = LG+XL (1024px+, <span class="tw">tw-lg:</span>). L.H. and Track. shown as Mob / Tab / Desk when values differ.<br><span style="display:inline-block;margin-top:5px;"><strong>Default document flow:</strong> <code>h1</code>→<span class="tw">tw-text-headline</span> · <code>h2</code>→<span class="tw">tw-text-headline-two</span> · <code>h3</code>→<span class="tw">tw-text-subheadline</span> · <code>h4</code>→<span class="tw">tw-text-title</span>. <code>h5</code> is allowed only for Upper tags/status labels or Contentful shifted Title. <code>h6</code> is not used.</span><br><span style="display:inline-block;margin-top:5px;"><strong>Other element defaults:</strong> <code>body</code>→<span class="tw">tw-text-base</span> · <code>p</code>→<span class="tw">tw-text-base</span> · <code>a</code>→<span class="tw">tw-text-link</span> · <code>blockquote</code>→<span class="tw">tw-text-blockquote</span> · <code>figure figcaption</code>→<span class="tw">tw-text-caption</span> · <code>small</code>→<span class="tw">tw-text-small</span> · <code>label</code>→<span class="tw">tw-text-label</span>.</span><br><span style="display:inline-block;margin-top:4px;"><strong>Available TW font weights:</strong> <span class="tw">tw-font-light</span> (300) · <span class="tw">tw-font-normal</span> (Book/400) · <span class="tw">tw-font-medium</span> (500) · <span class="tw">tw-font-book</span> (legacy alias = light). <strong style="color:#E0988D;">tw-font-bold does not exist</strong> — Bold 700 is not in the Tailwind config fontWeight.</span></p>
 
       <!-- Contentful Shifted Header Mapping -->
       <div class="section-title" style="font-size:15px;margin-top:28px;margin-bottom:4px;">Contentful Shifted Header Mapping</div>
@@ -715,6 +716,10 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
     <div class="panel-tools">
       <button class="panel-tool primary" onclick="copyPrompt('color')">↗ Copy as prompt</button>
       <span class="panel-tool-hint">Click a swatch to copy hex · hover for usage notes</span>
+    </div>
+
+    <div class="info">
+      <strong>Code-facing caveat:</strong> semantic token names stay slash-based in design references (<span class="tok">text/secondary-button</span>, <span class="tok">border/secondary-button</span>, <span class="tok">heading-underline/primary</span>). CSS custom properties convert slashes to dash-case, so <span class="tok">heading-underline/primary</span> becomes <span class="mono">--heading-underline-primary</span>.
     </div>
 
     <!-- ── Contrast Lab ── -->
@@ -1919,7 +1924,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
 
     <!-- Playground -->
     <div id="bpg" class="sub-panel">
-      <div class="info">Tune the button live. Adjust each token, see it render against light / dark / cream stages, then copy the CSS or Tailwind utility recipe. Defaults match the Primary spec.</div>
+      <div class="info">Tune the button live. Adjust each token, see it render against light / dark / cream stages, then copy either a prototype-only CSS snapshot or a production-safe design token recipe. Defaults match the Primary spec.</div>
       <div class="bpg-wrap">
         <div>
           <div class="bpg-bg-tabs" style="margin-bottom:10px;">
@@ -1957,8 +1962,8 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           </div>
 
           <div class="bpg-export">
-            <button onclick="bpg_copy('css')">Copy CSS</button>
-            <button class="alt" onclick="bpg_copy('tw')">Copy Tailwind</button>
+            <button onclick="bpg_copy('css')">Prototype CSS only</button>
+            <button class="alt" onclick="bpg_copy('tw')">Design token recipe</button>
             <button class="alt" onclick="bpg_reset()" title="Reset to Primary default">↺</button>
           </div>
         </div>
@@ -2310,7 +2315,8 @@ function bpg_values(){
 }
 function bpg_css(v){
   const borderLine = v.bw>0 ? '  border: '+v.bw+'px solid '+v.bc+';\n' : '  border: none;\n';
-  return '.btn {\n'+
+  return '/* Prototype CSS only. Do not paste into production. Use the Design token recipe for shipped UI. */\n'+
+    '.btn {\n'+
     '  height: '+v.h+'px;\n'+
     '  padding: 0 '+v.px+'px;\n'+
     '  border-radius: '+v.r+'px;\n'+
@@ -2325,28 +2331,22 @@ function bpg_css(v){
     '}';
 }
 function bpg_tw(v){
-  // Nearest 4px ramp for radius/padding (best-effort)
-  const rampPad = Math.round(v.px/4)/2; // 0.5 = 4px
-  const rampR = v.r >= 14 ? 'tw-rounded' : (v.r >= 6 ? 'tw-rounded-sm' : 'tw-rounded-none');
-  const wMap = {300:'tw-font-light',400:'tw-font-normal',500:'tw-font-medium',600:'tw-font-medium',700:'tw-font-medium'};
+  const isSecondary = v.bw > 0;
+  const classes = isSecondary
+    ? 'tw-inline-flex tw-items-center tw-justify-center tw-text-button-link tw-font-medium tw-rounded tw-bg-action-secondary tw-text-secondary-button tw-border tw-border-secondary-button hover:tw-bg-action-secondary-highlight hover:tw-border-action-highlight disabled:tw-border-secondary-disabled disabled:tw-text-action-disabled'
+    : 'tw-inline-flex tw-items-center tw-justify-center tw-text-button-link tw-font-medium tw-rounded tw-bg-action tw-text-primary-inverse tw-border-none hover:tw-bg-action-highlight disabled:tw-bg-primary-disabled';
+  const label = isSecondary ? 'Share' : 'Lend now';
   return [
-    'tw-inline-flex tw-items-center tw-justify-center',
-    'tw-h-['+v.h+'px]',
-    'tw-px-['+v.px+'px]',
-    rampR,
-    v.bw>0 ? ('tw-border-['+v.bw+'px] tw-border-['+v.bc+']') : 'tw-border-none',
-    'tw-bg-['+v.bg+']',
-    'tw-text-['+v.fg+']',
-    'tw-text-['+v.fs+'px]',
-    wMap[v.fw] || 'tw-font-medium',
-    v.ls!==0 ? ('tw-tracking-['+v.ls+'px]') : '',
-    'tw-leading-none'
-  ].filter(Boolean).join(' ');
+    '<!-- Design token recipe. Production-safe semantic utilities; slider-only values are intentionally not preserved. -->',
+    '<button class="'+classes+'">'+label+'</button>',
+    '',
+    '<!-- SM breakpoint variant: use tw-rounded-sm with the compact button size in the component implementation. -->'
+  ].join('\n');
 }
 function bpg_copy(kind){
   const v = bpg_values();
-  if(kind === 'css') copyText(bpg_css(v), 'Copied CSS');
-  else copyText(bpg_tw(v), 'Copied Tailwind classes');
+  if(kind === 'css') copyText(bpg_css(v), 'Copied prototype CSS');
+  else copyText(bpg_tw(v), 'Copied design token recipe');
 }
 function bpg_reset(){
   const d = BPG_DEFAULTS;
@@ -2495,7 +2495,7 @@ function copyPrompt(panelKey){
   if(panelKey === 'color'){
     const theme = document.querySelector('.theme-block.on');
     const code = theme ? theme.id.replace('t-','') : 'def';
-    const themeFull = ({def:'default', gdk:'green-dark', glt:'green-light', mar:'marigold', sto:'stone'})[code] || code;
+    const themeFull = ({def:'default', gdk:'green-dark', glt:'green-light', mar:'marigold-light', sto:'stone-light'})[code] || code;
     body = 'Kiva 2026 Design System — Color Tokens (theme: '+themeFull+')\n\n';
     body += 'Apply via Tailwind utilities: tw-text-{name}, tw-bg-{name}, tw-border-{name}.\n';
     body += 'Tokens resolve to CSS custom properties on :root; switching theme keeps class names stable.\n\n';
@@ -2519,8 +2519,10 @@ function copyPrompt(panelKey){
     body += '- text/* maps to tw-text-* utility classes.\n';
     body += '- background/* maps to tw-bg-* utility classes.\n';
     body += '- border/* maps to tw-border-*, tw-divide-*, tw-ring-*.\n';
+    body += '- Include text/secondary-button and border/secondary-button for secondary buttons.\n';
+    body += '- heading-underline/primary keeps the slash token name in design docs; CSS custom properties render it as --heading-underline-primary.\n';
     body += '- Theme switches at :root — class names stay stable.\n\n';
-    body += 'Available themes: default, green-dark, green-light, marigold, stone.\n';
+    body += 'Available code themes: default, green-dark, green-light, marigold-light, stone-light.\n';
   } else if(panelKey === 'spacing'){
     body = 'Kiva 2026 Design System — Spacing Tokens\n\n';
     body += 'Pick by meaning, not pixel value. All values use the 8px base ramp.\n\n';
@@ -2562,10 +2564,10 @@ function copyPrompt(panelKey){
     body += '- Subheadline → <h3> / tw-text-subheadline → 18/18/20 → Book 400, sans\n';
     body += '- Title → <h4> / tw-text-title → 18/18/20 → Medium 500, sans\n';
     body += '- Base / Body → <p>, <body> / tw-text-base → 16/16/16 → Book 400, sans\n';
-    body += '- Button → <button> / tw-text-button → 16/16/16 → Medium 500, sans\n';
+    body += '- Button → <button> / tw-text-button-link → 16/16/16 → Medium 500, sans\n';
     body += '- Label → <label> / tw-text-label → 14/14/14 → Medium 500, sans\n';
     body += '- Caption → <figcaption> / tw-text-caption → 14/14/14 → Book 400, sans\n';
-    body += '- Upper → <h5> / tw-text-upper → 14/14/14 → Medium 500, sans, ALL UPPERCASE\n';
+    body += '- Upper → <h5> limited exception / tw-text-upper → 14/14/14 → Medium 500, sans, ALL UPPERCASE\n';
     body += '- Small → <small> / tw-text-small → 14/14/14 → Light 300, sans\n';
     body += '- Blockquote → <blockquote> / tw-text-blockquote → 20/20/22 → Regular italic, serif\n';
     body += '- Link → <a> / tw-text-link → inherits parent size → Book 400, underline + action color\n\n';
@@ -2577,6 +2579,7 @@ function copyPrompt(panelKey){
     body += '- Subheadline → <h4>\n';
     body += '- Title → <h5>\n\n';
     body += 'RULES:\n';
+    body += '- Default document flow uses h1-h4 only. h5 is a limited exception for Upper tags/status labels or Contentful shifted mapping. Do not use h6.\n';
     body += '- Tokens are bundled units. Never override font-size, weight, line-height, or tracking individually.\n';
     body += '- Default paragraphs use tw-text-base. Apply smaller tokens (caption/label) only for specific semantic purposes.\n';
     body += '- tw-text-upper for 1-3 word tags / status badges only. Never for sentences or paragraphs.\n';
@@ -2669,7 +2672,7 @@ function copyPrompt(panelKey){
     body += '- Don\'t reuse --border-* tokens for focus rings.\n';
   } else if(panelKey === 'buttons'){
     body = 'Kiva 2026 Design System — Buttons\n\n';
-    body += '2 button types. Both use Kiva Post Grotesk Medium 500, 16px, line-height 21px, tracking 0 (tw-text-button + tw-font-medium).\n\n';
+    body += '2 button types. Both use Kiva Post Grotesk Medium 500, 16px, line-height 21px, tracking 0 (tw-text-button-link + tw-font-medium).\n\n';
     body += 'PRIMARY:\n';
     body += '- background: default #276A43 · hover #223829 · active #223829 · disabled #276A43 @30%\n';
     body += '- text color: #EDF4F1 (all states)\n';
@@ -2688,7 +2691,8 @@ function copyPrompt(panelKey){
     body += 'RULES:\n';
     body += '- Primary = main CTA per view. Use for high-emphasis "go forward" actions.\n';
     body += '- Secondary = supporting action. Pair with primary; lower visual weight.\n';
-    body += '- Never use tw-text-button-link — renamed to tw-text-button May 2026.\n';
+    body += '- Use tw-text-button-link for current shipped code. Treat any future shorter alias as valid only after it ships.\n';
+    body += '- Production recipes should use semantic utilities such as tw-bg-action, tw-text-primary-inverse, tw-rounded, and tw-border-secondary-button. Prototype CSS snapshots are not production-ready.\n';
     body += '- For Secondary border weight detail, see the Border panel.\n';
   }
   copyText(body, 'Copied prompt for ' + panelKey);
@@ -2747,7 +2751,7 @@ function bindSearch(){
 
 /* ═══════════════ Export tray ═══════════════ */
 const THEME_KEYS = ['def','gdk','glt','mar','sto'];
-const THEME_NAMES = {def:'default', gdk:'green-dark', glt:'green-light', mar:'marigold', sto:'stone'};
+const THEME_NAMES = {def:'default', gdk:'green-dark', glt:'green-light', mar:'marigold-light', sto:'stone-light'};
 let exportCurrentTab = 'json';
 
 function openExport(){
@@ -2822,6 +2826,7 @@ function renderExport(){
   } else if(exportCurrentTab === 'cssvars'){
     const lines = [];
     lines.push('/* Kiva 2026 Design System — CSS Custom Properties */');
+    lines.push('/* Slash token names become dash-case CSS vars, e.g. heading-underline/primary -> --heading-underline-primary. */');
     const renderTheme = (code, scope) => {
       const groups = getThemeTokens(code);
       lines.push(scope + ' {');
