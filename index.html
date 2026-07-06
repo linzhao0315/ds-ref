@@ -382,6 +382,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
   <button onclick="showPanel('elevation',this)">Elevation</button>
   <button onclick="showPanel('border',this)">Border</button>
   <button onclick="showPanel('buttons',this)">Buttons</button>
+  <button onclick="showPanel('components',this)">Components</button>
   <span class="kbd-hint"><kbd class="kbd">←</kbd><kbd class="kbd">→</kbd> nav · <kbd class="kbd">/</kbd> find · <kbd class="kbd">click</kbd> to copy</span>
 </nav>
 
@@ -1429,13 +1430,13 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
         <div class="radius-demo" style="border-radius:8px;"></div>
         <div class="radius-name">sm — 8px</div>
         <div class="radius-tw">tw-rounded-sm</div>
-        <div class="radius-use">Chips, table frames, rectangle achievement badges (big)</div>
+        <div class="radius-use">Chips, table frames, large rectangular achievement badges</div>
       </div>
       <div class="radius-card">
         <div class="radius-demo" style="border-radius:12px;"></div>
         <div class="radius-name">md — 12px</div>
         <div class="radius-tw">tw-rounded-md</div>
-        <div class="radius-use">Tooltips, stats tiles, selection tiles, sticky banners/footer, mobile images</div>
+        <div class="radius-use">Tooltips, stats tiles, selection tiles, sticky banners/footers, mobile images</div>
       </div>
       <div class="radius-card">
         <div class="radius-demo" style="border-radius:16px;"></div>
@@ -1642,19 +1643,19 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           <tr>
             <td><span class="tok">solid/hover</span></td>
             <td><span class="mono">--border-hover</span></td>
-            <td class="mv">1.2px</td>
+            <td class="mv">1px</td>
             <td class="mv">—</td>
             <td class="mv">—</td>
-            <td><span class="border-preview-cell" style="border:1.2px solid #223829;"></span></td>
+            <td><span class="border-preview-cell" style="border:1px solid #223829;"></span></td>
             <td>Hover state on any bordered interactive element</td>
           </tr>
           <tr>
             <td><span class="tok">solid/active</span></td>
             <td><span class="mono">--border-active</span></td>
-            <td class="mv">1.2px</td>
+            <td class="mv">1px</td>
             <td class="mv">—</td>
             <td class="mv">—</td>
-            <td><span class="border-preview-cell" style="border:1.2px solid #223829;"></span></td>
+            <td><span class="border-preview-cell" style="border:1px solid #223829;"></span></td>
             <td>Pressed / active state on bordered elements</td>
           </tr>
           <tr>
@@ -1695,7 +1696,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           <div class="border-style-demo">
             <div class="shape" style="border:2px solid #223829;"></div>
           </div>
-          <div class="style-rule"><strong>All filled content.</strong> Default for buttons, cards, inputs, dropdowns, tables. Width changes with state: 1px rest · 1.2px hover/active · 2px selected.</div>
+          <div class="style-rule"><strong>All filled content.</strong> Default for buttons, cards, inputs, dropdowns, tables. Width by state: 1px rest / hover / active (state change is communicated by border color, not weight) · 2px selected / emphasis. The 1.2px intermediate step is retired.</div>
         </div>
         <div class="border-style-card">
           <div class="style-name">Dashed</div>
@@ -1711,7 +1712,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
     <!-- States -->
     <div id="bss" class="sub-panel">
       <div class="info">
-        <strong>Border weight communicates state.</strong> 1px = resting · 1.2px = hover/active · 2px = selected. The progression is monotonic — heavier weight always means more attention from the user, never less.
+        <strong>Border weight communicates commitment.</strong> 1px = resting, hover and active (those states shift border color, not weight) · 2px = selected / emphasis. Heavier weight always means more commitment, never less. The former 1.2px hover step is retired.
       </div>
 
       <div class="border-state-grid">
@@ -1722,16 +1723,16 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           <div class="border-state-meta">1px solid<br>Default resting state</div>
         </div>
         <div class="border-state-card">
-          <div class="border-state-demo"><div class="shape" style="border:1.2px solid #223829;"></div></div>
+          <div class="border-state-demo"><div class="shape" style="border:1px solid #223829;"></div></div>
           <div class="border-state-name">Hover</div>
           <div class="border-state-var">--border-hover</div>
-          <div class="border-state-meta">1.2px solid<br>Cursor on element</div>
+          <div class="border-state-meta">1px solid<br>Cursor on element</div>
         </div>
         <div class="border-state-card">
-          <div class="border-state-demo"><div class="shape" style="border:1.2px solid #223829;"></div></div>
+          <div class="border-state-demo"><div class="shape" style="border:1px solid #223829;"></div></div>
           <div class="border-state-name">Active</div>
           <div class="border-state-var">--border-active</div>
-          <div class="border-state-meta">1.2px solid<br>Pressed / clicked</div>
+          <div class="border-state-meta">1px solid<br>Pressed / clicked</div>
         </div>
         <div class="border-state-card">
           <div class="border-state-demo"><div class="shape" style="border:2px solid #223829;"></div></div>
@@ -1756,7 +1757,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
       <div class="border-component-list">
         <div class="border-component-row"><span class="comp">Text field</span><span class="tok-mini">--border-default → hover → active</span></div>
         <div class="border-component-row"><span class="comp">Dropdown (closed)</span><span class="tok-mini">--border-default</span></div>
-        <div class="border-component-row"><span class="comp">Dropdown (open)</span><span class="tok-mini">--border-active (1.2px)</span></div>
+        <div class="border-component-row"><span class="comp">Dropdown (open)</span><span class="tok-mini">--border-active (1px)</span></div>
         <div class="border-component-row"><span class="comp">Error input</span><span class="tok-mini">--border-selected (2px, color/danger)</span></div>
         <div class="border-component-row"><span class="comp">Disabled input</span><span class="tok-mini">--border-secondary-disabled</span></div>
         <div class="border-component-row"><span class="comp">Search bar</span><span class="tok-mini">--border-default → hover</span></div>
@@ -1793,7 +1794,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
         </div>
         <div class="rule-card rule-do">
           <div class="rule-title">Border weight communicates state</div>
-          <div class="rule-desc">1px = resting · 1.2px = hover/active · 2px = selected. The progression is monotonic — heavier always means more attention.</div>
+          <div class="rule-desc">1px = resting/hover/active (color signals the state) · 2px = selected/emphasis. Heavier always means more commitment. The former 1.2px step is retired.</div>
         </div>
         <div class="rule-card rule-do">
           <div class="rule-title">Solid for filled content · dashed for empty</div>
@@ -1831,21 +1832,28 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
 <div id="p-buttons" class="panel">
   <div class="section">
     <div class="section-title">Buttons</div>
-    <div class="section-desc">2 button types. All values from <code>Mapped/primary.tokens.json</code> and <code>Mapped/secondary.tokens.json</code>. Both use KPG Medium 500, 16px, line-height 21px, tracking 0.</div>
+    <div class="section-desc">6 button variants — primary · secondary · danger · link · ghost · caution — from the <code>Mapped - Buttons</code> collection (the variant is the variable mode). 2 sizes: default (48px fixed height, radius 16, label KPG Medium 16/21) and small (32px, radius 8, label KPG Medium 14/18). 5 states: default · hover · active · disabled · loading.</div>
 
     <div class="panel-tools">
       <button class="panel-tool primary" onclick="copyPrompt('buttons')">↗ Copy as prompt</button>
-      <span class="panel-tool-hint">3 sub-tabs: Primary · Secondary · Playground (live sliders)</span>
+      <span class="panel-tool-hint">3 sub-tabs: All variants · Primary · Secondary</span>
     </div>
 
     <div class="sub-nav">
-      <button class="sub-btn on" onclick="showSub('bp',this,'buttons')">Primary</button>
+      <button class="sub-btn on" onclick="showSub('ball',this,'buttons')">All variants</button>
+      <button class="sub-btn" onclick="showSub('bp',this,'buttons')">Primary</button>
       <button class="sub-btn" onclick="showSub('bs',this,'buttons')">Secondary</button>
-      <button class="sub-btn" onclick="showSub('bpg',this,'buttons')">Playground</button>
+    </div>
+
+    <!-- All variants -->
+    <div id="ball" class="sub-panel on">
+      <div class="info">The full variant × state matrix, rendered live from <code>Mapped - Buttons</code> (default theme values). Loading keeps the variant background, hides the label and shows a spinner in <code>button/color/spinner</code>. Disabled additionally dims the whole control to 40% opacity.</div>
+      <div id="btn-matrix"></div>
+      <p class="note">Sizing is <strong>size-driven, not breakpoint-driven</strong>: default = 24×8 padding · 48px fixed height · radius 16 · <span class="tw">tw-rounded</span>; small = 16×4 · 32px · radius 8 · <span class="tw">tw-rounded-sm</span> · label <span class="tw">tw-text-label</span> (14/18). Only secondary carries a visible border. One primary action per view.</p>
     </div>
 
     <!-- Primary -->
-    <div id="bp" class="sub-panel on">
+    <div id="bp" class="sub-panel">
       <div class="btn-states">
         <div>
           <div class="btn-state-label">Default</div>
@@ -1875,7 +1883,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           <tr><td class="tok">loading state</td><td colspan="4" class="mono">border stroke weight: 0 · bg/text same as default state</td></tr>
           <tr><td class="tok">radius LG / MD</td><td colspan="4" class="mono">16px → <span class="tw">tw-rounded</span></td></tr>
           <tr><td class="tok">radius SM</td><td colspan="4" class="mono">8px → <span class="tw">tw-rounded-sm</span></td></tr>
-          <tr><td class="tok">inset LG / MD</td><td colspan="4" class="mono">14px vertical padding</td></tr>
+          <tr><td class="tok">inset LG / MD</td><td colspan="4" class="mono">14px vertical padding <span style="color:#757575;">(legacy 2024 sets — canonical: fixed 48px height with 24×8 padding)</span></td></tr>
           <tr><td class="tok">inset SM</td><td colspan="4" class="mono">8px vertical padding</td></tr>
           <tr><td class="tok">typography</td><td colspan="4" class="mono">KPG Medium 500 · 16px · L.H. 21px · tracking 0 · <span class="tw">tw-font-medium</span></td></tr>
         </tbody>
@@ -1891,11 +1899,11 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
         </div>
         <div>
           <div class="btn-state-label">Hover</div>
-          <div class="btn-preview" style="padding:0 14px;height:48px;background:#EDF4F1;border-radius:16px;color:#212121;border:1.2px solid #212121;">Share</div>
+          <div class="btn-preview" style="padding:0 14px;height:48px;background:#EDF4F1;border-radius:16px;color:#212121;border:1px solid #212121;">Share</div>
         </div>
         <div>
           <div class="btn-state-label">Active</div>
-          <div class="btn-preview" style="padding:0 14px;height:48px;background:#EDF4F1;border-radius:16px;color:#212121;border:1.2px solid #212121;">Share</div>
+          <div class="btn-preview" style="padding:0 14px;height:48px;background:#EDF4F1;border-radius:16px;color:#212121;border:1px solid #212121;">Share</div>
         </div>
         <div>
           <div class="btn-state-label">Disabled</div>
@@ -1909,68 +1917,157 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
           <tr><td class="tok">background</td><td class="mono">#FFFFFF</td><td class="mono">#EDF4F1</td><td class="mono">#EDF4F1</td><td class="mono">#FFFFFF</td></tr>
           <tr><td class="tok">text color</td><td colspan="3" class="mono">#212121 — all active states</td><td class="mono">#212121 @30%</td></tr>
           <tr><td class="tok">border color</td><td colspan="3" class="mono">#212121 — all active states</td><td class="mono">#212121 @30%</td></tr>
-          <tr><td class="tok">border stroke weight</td><td class="mono">1px</td><td class="mono">1.2px</td><td class="mono">1.2px</td><td class="mono">1px</td></tr>
+          <tr><td class="tok">border stroke weight</td><td class="mono">1px</td><td class="mono">1px</td><td class="mono">1px</td><td class="mono">1px</td></tr>
           <tr><td class="tok">loading state</td><td colspan="4" class="mono">bg: #FFFFFF · border stroke: 1px · text: #212121</td></tr>
           <tr><td class="tok">radius LG / MD</td><td colspan="4" class="mono">16px → <span class="tw">tw-rounded</span></td></tr>
           <tr><td class="tok">radius SM</td><td colspan="4" class="mono">8px → <span class="tw">tw-rounded-sm</span></td></tr>
-          <tr><td class="tok">inset LG / MD</td><td colspan="4" class="mono">14px vertical padding</td></tr>
+          <tr><td class="tok">inset LG / MD</td><td colspan="4" class="mono">14px vertical padding <span style="color:#757575;">(legacy 2024 sets — canonical: fixed 48px height with 24×8 padding)</span></td></tr>
           <tr><td class="tok">inset SM</td><td colspan="4" class="mono">8px vertical padding</td></tr>
           <tr><td class="tok">typography</td><td colspan="4" class="mono">KPG Medium 500 · 16px · L.H. 21px · tracking 0 · <span class="tw">tw-font-medium</span></td></tr>
         </tbody>
       </table>
 
-      <p class="note">Both Primary and Secondary buttons use 8px (<span class="tw">tw-rounded-sm</span>) at SM breakpoint. Secondary border stroke weight: 1px default · 1.2px hover · 1.2px active (per <code>Alias - Border/width.tokens.json</code>). See the <a href="#border/bss" style="color:#276A43;">Border → States</a> tab for the canonical stroke weight scale.</p>
+      <p class="note">Radius is <strong>size-driven</strong>: 16px for the default size, 8px (<span class="tw">tw-rounded-sm</span>) for the small size — it does not change with breakpoint. Secondary border stroke weight: 1px in every state (<code>solid/default · solid/hover · solid/active</code> → <code>border/width/100</code>); hover/active are signalled by background and border color. Emphasis contexts use 2px (<code>solid/emphasis</code>). See the <a href="#border/bss" style="color:#276A43;">Border → States</a> tab.</p>
     </div>
 
-    <!-- Playground -->
-    <div id="bpg" class="sub-panel">
-      <div class="info">Tune the button live. Adjust each token, see it render against light / dark / cream stages, then copy either a prototype-only CSS snapshot or a production-safe design token recipe. Defaults match the Primary spec.</div>
-      <div class="bpg-wrap">
-        <div>
-          <div class="bpg-bg-tabs" style="margin-bottom:10px;">
-            <button class="on" data-bg="light" onclick="bpg_setBg(this,'light')">Light bg</button>
-            <button data-bg="dark" onclick="bpg_setBg(this,'dark')">Dark bg</button>
-            <button data-bg="cream" onclick="bpg_setBg(this,'cream')">Cream bg</button>
-          </div>
-          <div class="bpg-stage" id="bpg-stage" data-bg="light">
-            <button id="bpg-btn">Lend now</button>
-          </div>
-          <div class="bpg-out" id="bpg-out"></div>
-        </div>
-
-        <div class="bpg-controls">
-          <div class="bpg-group">
-            <div class="grp-label">Size &amp; Shape</div>
-            <div class="bpg-slider"><span>Height</span><input type="range" id="bpg-h" min="28" max="72" step="1" value="48"><span class="v"><span id="v-h">48</span>px</span></div>
-            <div class="bpg-slider"><span>Padding-X</span><input type="range" id="bpg-px" min="6" max="40" step="1" value="14"><span class="v"><span id="v-px">14</span>px</span></div>
-            <div class="bpg-slider"><span>Radius</span><input type="range" id="bpg-r" min="0" max="36" step="1" value="16"><span class="v"><span id="v-r">16</span>px</span></div>
-            <div class="bpg-slider"><span>Border</span><input type="range" id="bpg-bw" min="0" max="3" step="0.2" value="0"><span class="v"><span id="v-bw">0</span>px</span></div>
-          </div>
-
-          <div class="bpg-group">
-            <div class="grp-label">Typography</div>
-            <div class="bpg-slider"><span>Font size</span><input type="range" id="bpg-fs" min="10" max="22" step="1" value="16"><span class="v"><span id="v-fs">16</span>px</span></div>
-            <div class="bpg-slider"><span>Weight</span><input type="range" id="bpg-fw" min="300" max="700" step="100" value="500"><span class="v" id="v-fw">500</span></div>
-            <div class="bpg-slider"><span>Tracking</span><input type="range" id="bpg-ls" min="-1" max="2" step="0.05" value="0"><span class="v"><span id="v-ls">0</span>px</span></div>
-          </div>
-
-          <div class="bpg-group">
-            <div class="grp-label">Color</div>
-            <div class="bpg-color"><span>Background</span><input type="color" id="bpg-bg" value="#276A43"><input type="text" id="bpg-bg-hex" value="#276A43" maxlength="7"></div>
-            <div class="bpg-color"><span>Text</span><input type="color" id="bpg-fg" value="#EDF4F1"><input type="text" id="bpg-fg-hex" value="#EDF4F1" maxlength="7"></div>
-            <div class="bpg-color"><span>Border</span><input type="color" id="bpg-bc" value="#276A43"><input type="text" id="bpg-bc-hex" value="#276A43" maxlength="7"></div>
-          </div>
-
-          <div class="bpg-export">
-            <button onclick="bpg_copy('css')">Prototype CSS only</button>
-            <button class="alt" onclick="bpg_copy('tw')">Design token recipe</button>
-            <button class="alt" onclick="bpg_reset()" title="Reset to Primary default">↺</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+
+<!-- ════════════════════════════════════════════════════
+     COMPONENTS (Mapped layer)
+════════════════════════════════════════════════════ -->
+<div id="p-components" class="panel">
+  <div class="section">
+    <div class="section-title">Components</div>
+    <div class="section-desc">The <code>Mapped</code> component layer: every component token aliases the semantic layer (<code>Alias - Color</code>, <code>Alias - Text/Spacing/Layout</code>) or a Global primitive — zero raw values. Tables below render from embedded data that mirrors <a href="tokens.json" style="color:#276A43;">tokens.json</a>. Demos show default-theme values.</div>
+    <div class="panel-tools">
+      <button class="panel-tool primary" onclick="copyComponentsPrompt()">↗ Copy as prompt</button>
+      <span class="panel-tool-hint">Machine endpoints: <a href="tokens.json" style="color:#276A43;">tokens.json</a> · <a href="tokens.css" style="color:#276A43;">tokens.css</a> · <a href="llms.txt" style="color:#276A43;">llms.txt</a> · <a href="llms-full.txt" style="color:#276A43;">llms-full.txt</a></span>
+    </div>
+    <div class="sub-nav" id="kvc-nav"></div>
+    <div id="kvc-panels"></div>
+  </div>
+</div>
+
+<style>
+.kvc-demo{background:#fff;border:1px dashed #C4C4C4;border-radius:12px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin:14px 0 20px;}
+.kvc-demo.dark{background:#223829;}
+.kvc-tokrow{display:grid;grid-template-columns:26px 260px 1fr;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid #F0F0EE;font-size:12px;}
+.kvc-tokrow .sw{width:22px;height:22px;border-radius:5px;border:1px solid #E0E0E0;}
+.kvc-tokrow .nm{font-family:'Courier New',monospace;color:#223829;}
+.kvc-tokrow .al{font-family:'Courier New',monospace;color:#757575;font-size:11px;}
+.kvc-metric{font-size:12px;color:#223829;padding:3px 0;}
+.kvc-h{font-weight:500;font-size:13px;color:#223829;margin:18px 0 6px;}
+@keyframes kvc-spin{to{transform:rotate(360deg);}}
+@keyframes kvc-shimmer{from{transform:translateX(-100%);}to{transform:translateX(220%);}}
+.kvc-spinner{border-radius:50%;border-style:solid;border-color:rgba(117,117,117,.3);animation:kvc-spin 1.5s ease-in-out infinite;}
+</style>
+<script>
+const KV_BTN = {
+  variants: ['primary','secondary','danger','link','ghost','caution'],
+  states: ['default','hover','active','disabled','loading'],
+  bg:     {primary:['#276a43','#223829','#223829','#276a434d','#276a43'], secondary:['#ffffff','#edf4f1','#edf4f1','#ffffff','#ffffff'], danger:['#e0988d','#f9f0ef','#f9f0ef','#e0988d','#e0988d'], link:['#223829','#276a43','#276a43','#223829','#223829'], ghost:['#ffffff','#edf4f1','#edf4f1','#ffffff','#ffffff'], caution:['#f8cd69','#f8f2e6','#f8f2e6','#f8cd69','#f8cd69']},
+  fg:     {primary:'#edf4f1', secondary:'#212121', danger:'#5c2a22', link:'#edf4f1', ghost:'#223829', caution:'#593207'},
+  border: {secondary:'#212121'},
+  spinner:{primary:'#ffffff', secondary:'#000000', danger:'#ffffff', link:'#ffffff', ghost:'#2aa967', caution:'#000000'}
+};
+function renderBtnMatrix(){
+  const host = document.getElementById('btn-matrix');
+  if(!host) return;
+  let h = '<div style="display:grid;grid-template-columns:90px repeat(6,1fr);gap:10px;align-items:center;">';
+  h += '<div></div>' + KV_BTN.variants.map(v=>'<div style="font-size:11px;font-weight:500;color:#757575;text-align:center;">'+v+'</div>').join('');
+  for(const st of KV_BTN.states){
+    h += '<div style="font-size:11px;color:#757575;">'+st+'</div>';
+    for(const v of KV_BTN.variants){
+      const si = KV_BTN.states.indexOf(st);
+      const bg = KV_BTN.bg[v][si===4?0:si];
+      const fg = KV_BTN.fg[v];
+      const bd = v==='secondary' ? '1px solid '+KV_BTN.border.secondary : '1px solid transparent';
+      const op = st==='disabled' ? 'opacity:.4;' : '';
+      const label = st==='loading'
+        ? '<span class="kvc-spinner" style="width:16px;height:16px;border-width:2px;border-top-color:'+KV_BTN.spinner[v]+';display:inline-block;"></span>'
+        : 'Button';
+      h += '<div style="display:flex;justify-content:center;"><div style="'+op+'display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 18px;border-radius:14px;background:'+bg+';color:'+fg+';border:'+bd+';font-size:14px;font-weight:500;font-family:\'KPG\',sans-serif;">'+label+'</div></div>';
+    }
+  }
+  h += '</div>';
+  host.innerHTML = h;
+}
+
+const KV_COMPONENTS = [
+{id:'kvc-forms', name:'Forms', desc:'Text inputs and checkboxes. Fixed 48px input height, 4px radius, tokenized focus / error / disabled states. Never rely on color alone for errors — always pair with a message.',
+ demo:'<div style="display:flex;flex-direction:column;gap:6px;"><label style="font-size:14px;font-weight:500;color:#223829;">Label</label><div style="width:280px;height:48px;border:1px solid #c4c4c4;border-radius:4px;background:#fff;display:flex;align-items:center;padding:0 16px;color:#757575;font-size:16px;">Placeholder</div></div><div style="display:flex;flex-direction:column;gap:6px;"><label style="font-size:14px;font-weight:500;color:#223829;">Error</label><div style="width:280px;height:48px;border:1px solid #e0988d;border-radius:4px;background:#f9f0ef;display:flex;align-items:center;padding:0 16px;color:#223829;font-size:16px;">Value</div><span style="font-size:12px;color:#5c2a22;">Error message</span></div><div style="display:flex;align-items:center;gap:10px;"><div style="width:20px;height:20px;border-radius:4px;background:#276a43;display:flex;align-items:center;justify-content:center;color:#edf4f1;font-size:13px;">✓</div><span style="font-size:16px;color:#223829;">Checked</span></div>',
+ tokens:[['input background','input/color/background/default','background/primary','#ffffff'],['input background · error','input/color/background/danger','background/danger-highlight','#f9f0ef'],['input background · disabled','input/color/background/disabled','background/tertiary','#c4c4c4'],['input border','input/color/border/default','border/tertiary','#c4c4c4'],['input border · focus','input/color/border/focus','border/action','#276a43'],['input border · error','input/color/border/danger','border/danger','#e0988d'],['input text','input/color/text/default','text/primary','#223829'],['input text · error','input/color/text/danger','text/danger','#5c2a22'],['input icon','input/color/icon','text/secondary','#505050'],['checkbox unchecked','checkbox/color/background/unchecked','background/primary','#ffffff'],['checkbox checked','checkbox/color/background/checked','background/action','#276a43'],['checkbox disabled','checkbox/color/background/disabled','color/gray/200','#e0e0e0'],['checkbox border','checkbox/color/border/default','border/secondary','#757575'],['checkbox border · checked','checkbox/color/border/checked','border/action','#276a43'],['checkbox checkmark','checkbox/color/checkmark','text/primary-inverse','#edf4f1'],['checkbox label','checkbox/color/label','text/primary','#223829']],
+ metrics:['Radius — input/radius · checkbox/radius → radius/100 (4px)','Input height fixed 48px · horizontal inset 16px · leading icon 24px','Text — input/text/* → text/base (KPG Book 16 / 22)','Focus ring 2px → Alias-Border solid/emphasis'],
+ a11y:['Label always linked (for/id); never placeholder-as-label','Errors: aria-invalid + aria-describedby + visible message','Checkbox hit area = full label row; toggles with Space']},
+{id:'kvc-tooltip', name:'Tooltip', desc:'Theme-independent by design: two fixed neutral styles that look identical across themed sections. Dark chip for light surfaces, light chip for dark surfaces. Darkest gray (gray/800) rather than pure black avoids halation on small copy. Contrast 16.1:1 — AAA at any size.',
+ demo:'<div style="background:#212121;color:#fff;border-radius:16px;padding:16px 20px;max-width:220px;font-size:14px;line-height:1.4;position:relative;">Dark chip — for light surfaces<div style="position:absolute;left:calc(50% - 8px);bottom:-8px;border:8px solid transparent;border-top-color:#212121;border-bottom:none;"></div></div><div style="background:#223829;padding:24px;border-radius:12px;"><div style="background:#fff;color:#212121;border-radius:16px;padding:16px 20px;max-width:220px;font-size:14px;line-height:1.4;position:relative;box-shadow:0 4px 12px rgba(0,0,0,.08);">Light chip — for dark surfaces<div style="position:absolute;left:calc(50% - 8px);bottom:-8px;border:8px solid transparent;border-top-color:#fff;border-bottom:none;"></div></div></div>',
+ tokens:[['background · dark chip','tooltip/color/background/dark','color/gray/800','#212121'],['background · light chip','tooltip/color/background/light','color/neutral/white','#ffffff'],['text · on dark','tooltip/color/text/on-dark','color/neutral/white','#ffffff'],['text · on light','tooltip/color/text/on-light','color/gray/800','#212121']],
+ metrics:['Radius — tooltip/radius → radius/400 (16px)','Inset — tooltip/inset → spacing/scale/2-5 (20px) · max-width 250px','Arrow 16×8, same fill as container · shadow 0 4 12 shadow/default','Placements: top / bottom / left / right'],
+ a11y:['role="tooltip" + aria-describedby; no interactive content inside','Shows on hover AND focus; dismisses on Esc and blur','Tokens bypass the theme system on purpose — do not theme tooltips']},
+{id:'kvc-chips', name:'Chips & Pills', desc:'Chips are dismissible selections (filters, applied tags) — real buttons with a close icon. Pills are static, read-only status labels. Use buttons for actions, pills for status.',
+ demo:'<div style="display:inline-flex;align-items:center;gap:8px;background:#edf4f1;border-radius:16px;padding:8px 16px;font-size:16px;color:#223829;">Chip label <span style="font-size:14px;">✕</span></div><div style="display:inline-flex;align-items:center;gap:8px;background:#c4c4c4;border-radius:16px;padding:8px 16px;font-size:16px;color:#223829;">Hover <span style="font-size:14px;">✕</span></div><div style="display:inline-flex;align-items:center;background:#edf4f1;border-radius:16px;padding:8px 12px;font-size:14px;font-weight:500;color:#223829;">Pill label</div>',
+ tokens:[['chip background','chip/color/background/default','background/secondary','#edf4f1'],['chip background · hover','chip/color/background/hover','background/tertiary','#c4c4c4'],['chip text','chip/color/text','text/primary','#223829'],['chip icon','chip/color/icon','text/primary','#223829'],['pill background','pill/color/background','background/secondary','#edf4f1'],['pill text','pill/color/text','text/primary','#223829']],
+ metrics:['Radius — chip/radius · pill/radius → radius/400 (16px)','Chip inset 16×8 (inset/M × scale/1) · gap 8 · close icon 16px','Pill inset 12×8 · text pill/text/* → text/label (Medium 14 / 18)','Chip text chip/text/* → text/base (Book 16 / 22)'],
+ a11y:['Chip is a <button>; accessible name includes the value ("Remove filter: Kenya")','Keep 8px between adjacent chips for tap separation','Pills are plain text — never interactive, no role needed']},
+{id:'kvc-loading', name:'Loading', desc:'The placeholder holds layout space while content loads (skeleton); the spinner signals an in-flight action. Inside buttons the spinner arc follows the variant via button/color/spinner.',
+ demo:'<div style="width:240px;height:64px;background:#c4c4c4;border-radius:4px;overflow:hidden;position:relative;"><div style="position:absolute;inset:0;width:45%;background:linear-gradient(90deg,transparent,#edf4f1,transparent);animation:kvc-shimmer 1.5s cubic-bezier(.4,0,.2,1) infinite;"></div></div><span class="kvc-spinner" style="width:24px;height:24px;border-width:2px;border-top-color:#2aa967;display:inline-block;"></span><span class="kvc-spinner" style="width:32px;height:32px;border-width:2px;border-top-color:#2aa967;display:inline-block;"></span><span class="kvc-spinner" style="width:64px;height:64px;border-width:2px;border-top-color:#2aa967;display:inline-block;"></span>',
+ tokens:[['placeholder base','loadingplaceholder/color/base','background/tertiary','#c4c4c4'],['placeholder shimmer','loadingplaceholder/color/shimmer','background/secondary','#edf4f1'],['spinner arc','loadingspinner/color/default','color/brand/default','#2aa967'],['spinner track','loadingspinner/color/track','text/tertiary','#757575']],
+ metrics:['Radius — loadingplaceholder/radius → radius/100 (4px)','Spinner sizes 24 / 32 / 64 · 2px stroke · track at 30% opacity','Motion (code): shimmer 1.5s loop · spinner spin-eased 1.5s'],
+ a11y:['Loading region gets aria-busy="true"','Never intercept pointer events; not focusable','Respect prefers-reduced-motion']},
+{id:'kvc-carousel', name:'Carousel', desc:'Only the controls are componentized: paired arrows in three styles plus dot indicators. Slides are free content.',
+ demo:'<div style="width:32px;height:32px;border:2px solid #505050;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:#223829;">‹</div><div style="width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;color:#223829;">‹</div><div style="width:48px;height:48px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#223829;font-size:18px;">←</div><div style="display:flex;align-items:center;gap:12px;"><span style="width:12px;height:12px;border-radius:50%;background:#000;"></span><span style="width:8px;height:8px;border-radius:50%;background:#c4c4c4;"></span><span style="width:8px;height:8px;border-radius:50%;background:#c4c4c4;"></span></div>',
+ tokens:[['arrow icon','carousel/arrow/icon','text/primary','#223829'],['arrow border','carousel/arrow/border','border/primary','#505050'],['arrow background','carousel/arrow/background','background/primary','#ffffff'],['arrow background · subtle','carousel/arrow/background-subtle','color/gray/100','#f5f5f5'],['dot active','carousel/dot/active','color/neutral/black','#000000'],['dot inactive','carousel/dot/inactive','background/tertiary','#c4c4c4']],
+ metrics:['Sizes — Default 32 (2px border) · Top-right 28 (shadow) · Aside 48 (gray/100) · radius/max','Dots — active 12 · inactive 8 · gap 12 (scale/1-5)','Disabled arrow = whole control at 30% opacity'],
+ a11y:['Arrows are <button>s with aria-label "Show previous/next slide"','Slides: role=group + "slide x of y"; hidden slides tab-index −1','aria-current marks the active slide']},
+{id:'kvc-lightbox', name:'Lightbox', desc:'Modal dialog over a 75% black scrim. Three viewport widths, two headline levels (H2 serif for celebratory, H3 sans for utilitarian), optional footer with secondary + primary buttons.',
+ demo:'<div style="background:rgba(0,0,0,.75);padding:24px;border-radius:12px;flex:1;display:flex;justify-content:center;"><div style="background:#fff;border-radius:16px;padding:24px;max-width:360px;box-shadow:0 4px 16px rgba(0,0,0,.16);"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;"><strong style="font-size:20px;color:#223829;font-weight:500;">Lightbox header</strong><span style="color:#223829;">✕</span></div><p style="font-size:16px;color:#223829;line-height:1.4;margin:10px 0 16px;">Body copy sits in text/base with comfortable measure.</p><div style="display:flex;justify-content:flex-end;gap:20px;"><span style="padding:10px 20px;border:1px solid #212121;border-radius:16px;font-size:14px;font-weight:500;color:#212121;">Secondary</span><span style="padding:10px 20px;background:#276a43;border-radius:16px;font-size:14px;font-weight:500;color:#edf4f1;">Primary</span></div></div></div>',
+ tokens:[['background','lightbox/color/background','background/primary','#ffffff'],['text','lightbox/color/text','text/primary','#223829'],['close icon','lightbox/color/close-icon','text/primary','#223829'],['close icon · hover','lightbox/color/close-icon-hover','text/action-highlight','#223829'],['backdrop','lightbox/color/backdrop','color/neutral/scrim','#000000bf']],
+ metrics:['Radius — lightbox/radius → radius/400 (16px) · widths 888 / 600 / 320','H2: lightbox/text/h2/* → text/headline 2 (Dovetail Medium 22/31) · H3: → text/title (KPG Medium 20/26) · body text/base','Close: 24px icon in 48px hit area · footer buttons gap 20'],
+ a11y:['Focus trapped inside; Esc closes; focus returns to trigger','aria-modal="true"; page behind inert + scroll-locked','Small (320) anchors to the bottom as a sheet']},
+{id:'kvc-navfooter', name:'Nav & Footer', desc:'The site frame. Nav: white bar, brand-green logo, ghost-button links, tokenized search field. Footer: neutral gray surface (deliberately gray/100, not the greenish background/secondary), green links, caption legal text.',
+ demo:'<div style="flex:1;min-width:420px;"><div style="background:#fff;border-bottom:1px solid #c4c4c4;display:flex;align-items:center;gap:18px;padding:14px 20px;border-radius:8px 8px 0 0;"><strong style="color:#2aa967;font-size:20px;">kiva</strong><span style="font-size:15px;font-weight:500;color:#223829;">Lend ▾</span><span style="background:#edf4f1;border-radius:4px;padding:8px 14px;font-size:13px;color:#757575;flex:1;">Search all loans</span><span style="font-size:15px;font-weight:500;color:#276a43;">Borrow</span><span style="padding:8px 16px;border:1px solid #212121;border-radius:14px;font-size:13px;font-weight:500;color:#212121;">Support Kiva</span></div><div style="background:#f5f5f5;padding:16px 20px;border-radius:0 0 8px 8px;display:flex;gap:24px;font-size:13px;"><div><div style="font-weight:500;color:#223829;margin-bottom:6px;">Lend</div><div style="color:#276a43;">Lend now</div><div style="color:#276a43;">Monthly Good</div></div><div><div style="font-weight:500;color:#223829;margin-bottom:6px;">Community</div><div style="color:#276a43;">Teams</div><div style="color:#505050;">© 2026 Kiva</div></div></div></div>',
+ tokens:[['nav background','nav/color/background','background/primary','#ffffff'],['nav text','nav/color/text/default','text/primary','#223829'],['nav text · hover','nav/color/text/hover','text/action','#276a43'],['nav border','nav/color/border','border/tertiary','#c4c4c4'],['nav menu item hover','nav/color/menu-item-hover','background/secondary','#edf4f1'],['nav field background','nav/color/field-background','background/secondary','#edf4f1'],['nav icon','nav/color/icon','text/primary','#223829'],['nav logo','nav/color/logo','color/brand/default','#2aa967'],['footer background','footer/color/background','color/gray/100','#f5f5f5'],['footer heading','footer/color/heading','text/primary','#223829'],['footer link','footer/color/link','text/action','#276a43'],['footer text muted','footer/color/text-muted','text/secondary','#505050'],['footer divider','footer/color/divider','border/tertiary','#c4c4c4'],['footer icon','footer/color/icon','text/tertiary','#757575']],
+ metrics:['Nav heights 80 (desktop/tablet) · 64 (mobile) · links nav/text/link/* → text/button (Medium 16/21)','Dropdown radius — nav/dropdown/radius → radius/200 (8px)','Footer text — headings/links text/label · body text/caption · padding 64, gaps 48–8 on the scale','Breakpoint modes pinned per variant: XL→desktop(xl) · L→desktop(lg) · M→tablet(md) · SM→mobile(sm)'],
+ a11y:['<nav> and <footer> landmarks + skip-to-content link','Menus: Enter opens, Esc closes; logical tab order','Basket count announced via aria-label; aria-current for current page']},
+{id:'kvc-avatar', name:'Avatar & Icons', desc:'KvUserAvatar identifies people in three modes. Material icons are deliberately token-free: 24px, fill-current, always inheriting the parent text color.',
+ demo:'<div style="text-align:center;"><div style="width:48px;height:48px;border-radius:50%;background:#2aa967;display:flex;align-items:center;justify-content:center;"><svg width="20" height="29" viewBox="0 0 25 37" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M8.22861 0.875H0.857178V36.3125H8.22861V0.875Z"/><path d="M10.1143 23.2751C21.9428 23.2751 24.6857 13.2126 24.6857 11.4626H23.6571C11.8286 11.4626 9.08569 21.5251 9.08569 23.2751H10.1143Z"/><path d="M9.08569 24.2376C9.08569 26.0751 11.1428 36.3126 23.8285 36.3126H24.8571C24.8571 34.4751 22.8 24.2376 10.1143 24.2376H9.08569Z"/></svg></div><div style="font-size:11px;color:#757575;margin-top:6px;">Anonymous</div></div><div style="text-align:center;"><div style="width:48px;height:48px;border-radius:50%;background:#276a43;display:flex;align-items:center;justify-content:center;color:#edf4f1;font-size:18px;font-weight:500;">A</div><div style="font-size:11px;color:#757575;margin-top:6px;">Letter</div></div><div style="text-align:center;"><div style="width:48px;height:48px;border-radius:50%;background:#c4c4c4;overflow:hidden;position:relative;"><div style="position:absolute;inset:0;width:45%;background:linear-gradient(90deg,transparent,#edf4f1,transparent);animation:kvc-shimmer 1.5s cubic-bezier(.4,0,.2,1) infinite;"></div></div><div style="font-size:11px;color:#757575;margin-top:6px;">Image · loading</div></div>',
+ tokens:[['avatar background','avatar/color/background','color/brand/default','#2aa967']],
+ metrics:['Radius — avatar/radius → radius/max (full circle) · base 48px, scales 24–64 with context','Anonymous = brand circle + the white Kiva K mark (60% height) · Letter = background/action + initial · Image = the lender photo clipped to the circle; while it loads, the circle runs KvLoadingPlaceholder (base + shimmer) — there is no gray person-glyph empty state in the system','KvMaterialIcon: 24px, fill-current — no color tokens by design; letter-avatar random combos not tokenized'],
+ a11y:['Photos: alt "Image of lender"','Anonymous/letter marks are decorative (aria-hidden)','Wrap in a ≥48px target when clickable']}
+];
+
+function renderComponents(){
+  const nav = document.getElementById('kvc-nav');
+  const host = document.getElementById('kvc-panels');
+  if(!nav || !host) return;
+  nav.innerHTML = KV_COMPONENTS.map((c,i)=>'<button class="sub-btn'+(i===0?' on':'')+'" onclick="showSub(\''+c.id+'\',this,\'components\')">'+c.name+'</button>').join('');
+  host.innerHTML = KV_COMPONENTS.map((c,i)=>{
+    let h = '<div id="'+c.id+'" class="sub-panel'+(i===0?' on':'')+'">';
+    h += '<div class="info">'+c.desc+'</div>';
+    h += '<div class="kvc-demo'+(c.id==='kvc-tooltip'?'':'')+'">'+c.demo+'</div>';
+    h += '<div class="kvc-h">Color tokens</div>';
+    h += c.tokens.map(t=>'<div class="kvc-tokrow"><div class="sw" style="background:'+t[3]+';"></div><div class="nm">'+t[1]+'</div><div class="al">→ '+t[2]+' · '+t[3]+'</div></div>').join('');
+    h += '<div class="kvc-h">Metrics</div>';
+    h += c.metrics.map(m=>'<div class="kvc-metric">'+m+'</div>').join('');
+    h += '<div class="kvc-h">Accessibility</div>';
+    h += c.a11y.map(m=>'<div class="kvc-metric">'+m+'</div>').join('');
+    h += '</div>';
+    return h;
+  }).join('');
+}
+function copyComponentsPrompt(){
+  let md = '# Kiva Ecosystem 2026 — component tokens (Mapped layer)\n\nRules: never hardcode values; component token → semantic alias → Global primitive. Full library: https://linzhao0315.github.io/ds-ref/tokens.json\n\n';
+  md += '## Buttons\n6 variants (primary, secondary, danger, link, ghost, caution) × 2 sizes (default 48px h / small 32px) × 5 states. Default: 24×8 padding, radius 16, label KPG Medium 16/21. Small: 16×4, radius 8, label 14/18. Only secondary has a border. Spinner arc per variant: white / black / white / white / brand / black.\n\n';
+  for(const c of KV_COMPONENTS){
+    md += '## '+c.name+'\n'+c.desc+'\n';
+    md += c.tokens.map(t=>'- '+t[1]+' → '+t[2]+' ('+t[3]+')').join('\n')+'\n';
+    md += c.metrics.map(m=>'- '+m).join('\n')+'\n\n';
+  }
+  navigator.clipboard.writeText(md).then(()=>toast('Component prompt copied'));
+}
+document.addEventListener('DOMContentLoaded', function(){ renderBtnMatrix(); renderComponents(); });
+</script>
 
 </main>
 
@@ -2012,7 +2109,7 @@ mark.s-hit{background:#F8CD69;color:#593207;border-radius:2px;padding:0 2px;}
 
 <script>
 /* ═══════════════ Panel / sub / theme + deep-linking ═══════════════ */
-const PANEL_KEYS = ['type','color','spacing','layout','radius','elevation','border','buttons'];
+const PANEL_KEYS = ['type','color','spacing','layout','radius','elevation','border','buttons','components'];
 
 function showPanel(id, el, opts){
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
@@ -2367,6 +2464,7 @@ function bpg_reset(){
   toast('Reset to Primary default');
 }
 function bindBPG(){
+  if(!document.getElementById('bpg-h')) return; // playground removed from canonical reference
   ['bpg-h','bpg-px','bpg-r','bpg-bw','bpg-fs','bpg-fw','bpg-ls'].forEach(id => {
     document.getElementById(id).addEventListener('input', bpg_render);
   });
@@ -2611,8 +2709,8 @@ function copyPrompt(panelKey){
     body += 'CANONICAL TOKENS:\n';
     body += '- none → 0px → tw-rounded-none → Marketing/branding images, table cells\n';
     body += '- xs → 4px → tw-rounded-xs → Form inputs, dropdowns, textareas, combo boxes\n';
-    body += '- sm → 8px → tw-rounded-sm → Chips, table frames, rectangle achievement badges\n';
-    body += '- md → 12px → tw-rounded-md → Tooltips, stats tiles, selection tiles, sticky banners, mobile images\n';
+    body += '- sm → 8px → tw-rounded-sm → Chips, table frames, large rectangular achievement badges\n';
+    body += '- md → 12px → tw-rounded-md → Tooltips, stats tiles, selection tiles, sticky banners/footers, mobile images\n';
     body += '- base → 16px → tw-rounded → Buttons, modal, lightbox, toast, bottom sheet, mini cards. ALL OVERLAYS USE BASE.\n';
     body += '- lg → 20px → tw-rounded-lg → All standard card outer corners, loan cards, slider cards, desktop images\n';
     body += '- xl → 24px → tw-rounded-xl → Section frame (wide panel)\n';
@@ -2644,18 +2742,18 @@ function copyPrompt(panelKey){
     body += '5 stroke-weight tokens. Common alternative names: Stroke · Outline · Border width.\n\n';
     body += 'CANONICAL TOKENS (style/state · width · dash · gap · CSS variable · use case):\n';
     body += '- solid/default → 1px · — · — · --border-default → Form inputs, dropdowns, cards, secondary buttons (resting)\n';
-    body += '- solid/hover → 1.2px · — · — · --border-hover → Hover state on any bordered interactive element\n';
-    body += '- solid/active → 1.2px · — · — · --border-active → Pressed/active state on bordered elements\n';
+    body += '- solid/hover → 1px · — · — · --border-hover → Hover state on any bordered interactive element (color changes, weight does not)\n';
+    body += '- solid/active → 1px · — · — · --border-active → Pressed/active state on bordered elements (color changes, weight does not)\n';
     body += '- solid/selected → 2px · — · — · --border-selected → Selected cards, error inputs (visual selection)\n';
     body += '- dashed/dashed → 2px · 4px · 2px · --border-dashed → Empty-state placeholders, upload zones, unearned badges\n\n';
     body += 'STYLE DISCIPLINE:\n';
     body += '- Solid: all filled content (default for buttons, cards, inputs, dropdowns).\n';
     body += '- Dashed: reserved EXCLUSIVELY for empty/unearned states.\n\n';
-    body += 'STATE PROGRESSION: 1px rest → 1.2px hover/active → 2px selected (monotonic — heavier weight always means more user attention).\n\n';
+    body += 'STATE PROGRESSION: 1px rest/hover/active (state changes are signalled by border color) -> 2px selected/emphasis. The former 1.2px hover step is retired.\n\n';
     body += 'FOCUS USES OUTLINE, NOT BORDER-WIDTH. Keyboard focus renders as outline: var(--focus-ring) solid 2px with a glow halo, layered on top via outline (does not consume border slot or change box size).\n\n';
     body += 'COMPONENT MAPPING:\n';
     body += '- Text field: --border-default → hover → active\n';
-    body += '- Dropdown closed: --border-default. Open: --border-active (1.2px)\n';
+    body += '- Dropdown closed: --border-default. Open: --border-active (1px)\n';
     body += '- Error input: --border-selected (2px, color/danger)\n';
     body += '- Disabled input: --border-secondary-disabled\n';
     body += '- Primary button: 0px (filled, no border)\n';
@@ -2672,28 +2770,22 @@ function copyPrompt(panelKey){
     body += '- Don\'t reuse --border-* tokens for focus rings.\n';
   } else if(panelKey === 'buttons'){
     body = 'Kiva 2026 Design System — Buttons\n\n';
-    body += '2 button types. Both use Kiva Post Grotesk Medium 500, 16px, line-height 21px, tracking 0 (tw-text-button-link + tw-font-medium).\n\n';
-    body += 'PRIMARY:\n';
-    body += '- background: default #276A43 · hover #223829 · active #223829 · disabled #276A43 @30%\n';
-    body += '- text color: #EDF4F1 (all states)\n';
-    body += '- border: none (0px all states)\n';
-    body += '- radius: 16px LG/MD (tw-rounded), 8px SM (tw-rounded-sm)\n';
-    body += '- inset: 14px vertical padding LG/MD, 8px SM\n\n';
-    body += 'SECONDARY:\n';
-    body += '- background: default #FFFFFF · hover #EDF4F1 · active #EDF4F1 · disabled #FFFFFF\n';
-    body += '- text color: #212121 (active states), #212121 @30% (disabled)\n';
-    body += '- border color: #212121 (active states), #212121 @30% (disabled)\n';
-    body += '- border stroke weight: 1px default · 1.2px hover · 1.2px active · 1px loading\n';
-    body += '- radius: 16px LG/MD, 8px SM (same as primary)\n';
-    body += '- inset: 14px vertical padding LG/MD, 8px SM\n';
-    body += '- loading state: bg #FFFFFF · border 1px · text #212121\n\n';
-    body += 'CANONICAL HEIGHT: 48px (LG/MD), 36px (SM breakpoint).\n\n';
+    body += '6 variants (the Mapped - Buttons variable mode): primary, secondary, danger, link, ghost, caution.\n';
+    body += '2 sizes: default = fixed 48px height, 24x8 padding, radius 16 (tw-rounded), label KPG Medium 16/21 (tw-text-button-link). small = fixed 32px, 16x4 padding, radius 8 (tw-rounded-sm), label KPG Medium 14/18 (tw-text-label). Sizing is size-driven, not breakpoint-driven.\n';
+    body += '5 states: default, hover, active, disabled, loading.\n\n';
+    body += 'PER-VARIANT TOKENS (default theme; always bind the token, never the hex):\n';
+    body += '- primary: bg background/action #276A43 -> hover/active background/action-highlight #223829; text text/primary-inverse #EDF4F1; no border.\n';
+    body += '- secondary: bg background/action-secondary #FFFFFF -> hover background/action-secondary-highlight #EDF4F1; text+border text/secondary-button + border/secondary-button #212121 (1px, the only bordered variant).\n';
+    body += '- danger: bg background/danger #E0988D -> hover background/danger-highlight #F9F0EF; text text/danger #5C2A22.\n';
+    body += '- link: bg background/primary-inverse #223829 -> hover background/action #276A43; text text/primary-inverse #EDF4F1.\n';
+    body += '- ghost: bg background/primary #FFFFFF -> hover background/secondary #EDF4F1; text text/primary #223829; transparent border.\n';
+    body += '- caution: bg background/caution #F8CD69 -> hover background/caution-highlight #F8F2E6; text text/caution #593207.\n\n';
+    body += 'DISABLED: disabled tokens + 40% whole-button opacity (code: tw-opacity-low). LOADING: keep default bg, hide label, spinner arc = button/color/spinner (white on primary/danger/link, black on secondary/caution, brand #2AA967 on ghost); track = text/tertiary @30%.\n\n';
     body += 'RULES:\n';
-    body += '- Primary = main CTA per view. Use for high-emphasis "go forward" actions.\n';
-    body += '- Secondary = supporting action. Pair with primary; lower visual weight.\n';
-    body += '- Use tw-text-button-link for current shipped code. Treat any future shorter alias as valid only after it ships.\n';
-    body += '- Production recipes should use semantic utilities such as tw-bg-action, tw-text-primary-inverse, tw-rounded, and tw-border-secondary-button. Prototype CSS snapshots are not production-ready.\n';
-    body += '- For Secondary border weight detail, see the Border panel.\n';
+    body += '- One primary action per view; secondary accompanies a primary.\n';
+    body += '- danger for destructive, caution for needs-attention, link for navigation-as-button, ghost for lowest emphasis.\n';
+    body += '- Production recipes use semantic utilities (tw-bg-action, tw-text-primary-inverse, tw-rounded); never raw hex.\n';
+    body += '- Full token tables: https://linzhao0315.github.io/ds-ref/tokens.json';
   }
   copyText(body, 'Copied prompt for ' + panelKey);
 }
@@ -2817,8 +2909,8 @@ function renderExport(){
     };
     payload.border = {
       'solid/default':  { width:'1px' },
-      'solid/hover':    { width:'1.2px' },
-      'solid/active':   { width:'1.2px' },
+      'solid/hover':    { width:'1px' },
+      'solid/active':   { width:'1px' },
       'solid/selected': { width:'2px' },
       'dashed':         { width:'2px', dash:'4px', gap:'2px' },
     };

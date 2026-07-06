@@ -1,0 +1,457 @@
+/* Kiva Ecosystem 2026 — design tokens as CSS custom properties.
+   Generated from tokens.json — do not edit by hand. */
+
+:root {
+  /* Alias - Color (default theme) */
+  --text-primary: #223829;
+  --text-primary-inverse: #edf4f1;
+  --text-secondary: #505050;
+  --text-secondary-button: #212121;
+  --text-tertiary: #757575;
+  --text-action: #276a43;
+  --text-action-highlight: #223829;
+  --text-action-disabled: #2121214d;
+  --text-caution: #593207;
+  --text-caution-highlight: #996210;
+  --text-danger: #5c2a22;
+  --text-danger-highlight: #a24536;
+  --background-primary: #ffffff;
+  --background-primary-inverse: #223829;
+  --background-secondary: #edf4f1;
+  --background-tertiary: #c4c4c4;
+  --background-action: #276a43;
+  --background-action-highlight: #223829;
+  --background-action-secondary: #ffffff;
+  --background-action-secondary-highlight: #edf4f1;
+  --background-primary-disabled: #276a434d;
+  --background-caution: #f8cd69;
+  --background-caution-highlight: #f8f2e6;
+  --background-danger: #e0988d;
+  --background-danger-highlight: #f9f0ef;
+  --border-primary: #505050;
+  --border-primary-inverse: #ffffff;
+  --border-secondary: #757575;
+  --border-secondary-button: #212121;
+  --border-secondary-disabled: #2121214d;
+  --border-tertiary: #c4c4c4;
+  --border-action: #276a43;
+  --border-action-highlight: #223829;
+  --border-caution: #f8cd69;
+  --border-caution-highlight: #f8f2e6;
+  --border-danger: #e0988d;
+  --border-danger-highlight: #f9f0ef;
+  --heading-underline-primary: #2aa967;
+  --shadow-default: #00000014;
+  --shadow-hover: #00000029;
+  --shadow-click-active: #00000014;
+  /* Global radius */
+  --radius-0: 0px;
+  --radius-100: 4px;
+  --radius-200: 8px;
+  --radius-300: 12px;
+  --radius-400: 16px;
+  --radius-500: 20px;
+  --radius-600: 24px;
+  --radius-max: 9999px;
+  /* Global spacing scale */
+  --spacing-scale-0: 0px;
+  --spacing-scale-0-5: 4px;
+  --spacing-scale-1: 8px;
+  --spacing-scale-1-5: 12px;
+  --spacing-scale-2: 16px;
+  --spacing-scale-2-5: 20px;
+  --spacing-scale-3: 24px;
+  --spacing-scale-3-5: 28px;
+  --spacing-scale-4: 32px;
+  --spacing-scale-4-5: 36px;
+  --spacing-scale-5: 40px;
+  --spacing-scale-5-5: 44px;
+  --spacing-scale-6: 48px;
+  --spacing-scale-6-5: 52px;
+  --spacing-scale-7: 56px;
+  --spacing-scale-7-5: 60px;
+  --spacing-scale-8: 64px;
+  --spacing-scale-8-5: 68px;
+  --spacing-scale-9: 72px;
+  --spacing-scale-9-5: 76px;
+  --spacing-scale-10: 80px;
+  --spacing-scale-10-5: 84px;
+  --spacing-scale-11: 88px;
+  --spacing-scale-11-5: 92px;
+  --spacing-scale-12: 96px;
+  --spacing-scale-12-5: 100px;
+  --spacing-scale-13: 104px;
+  --spacing-scale-13-5: 108px;
+  --spacing-scale-14: 112px;
+  --spacing-scale-14-5: 116px;
+  --spacing-scale-15: 120px;
+  --spacing-scale-15-5: 124px;
+  --spacing-scale-16: 128px;
+  /* Elevation (x y blur spread / opacity baked into color) */
+  --elevation-default: 0 4px 12px rgba(0,0,0,0.08);
+  --elevation-hover: 0 4px 16px rgba(0,0,0,0.16);
+  --elevation-click-active: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+[data-theme="green-light"] {
+  --background-primary: #edf4f1;
+  --background-secondary: #ffffff;
+  --background-action-secondary: #edf4f1;
+  --background-action-secondary-highlight: #ffffff;
+}
+
+[data-theme="green-dark"] {
+  --text-primary: #edf4f1;
+  --text-primary-inverse: #223829;
+  --text-secondary: #c4c4c4;
+  --text-secondary-button: #edf4f1;
+  --text-tertiary: #e0e0e0;
+  --text-action: #78c79f;
+  --text-action-highlight: #edf4f1;
+  --background-primary: #223829;
+  --background-primary-inverse: #ffffff;
+  --background-secondary: #276a43;
+  --background-action: #78c79f;
+  --background-action-highlight: #edf4f1;
+  --background-action-secondary: #223829;
+  --background-action-secondary-highlight: #276a43;
+  --border-primary: #edf4f1;
+  --border-primary-inverse: #223829;
+  --border-secondary: #276a43;
+  --border-secondary-button: #edf4f1;
+  --border-tertiary: #78c79f;
+  --border-action: #78c79f;
+  --border-action-highlight: #edf4f1;
+}
+
+[data-theme="marigold"] {
+  --text-primary: #593207;
+  --text-primary-inverse: #f8f2e6;
+  --text-secondary-button: #593207;
+  --text-action: #996210;
+  --text-action-highlight: #593207;
+  --background-primary: #f8f2e6;
+  --background-primary-inverse: #593207;
+  --background-secondary: #ffffff;
+  --background-action: #996210;
+  --background-action-highlight: #593207;
+  --background-action-secondary: #f8f2e6;
+  --background-action-secondary-highlight: #ffffff;
+  --background-primary-disabled: #9962104d;
+  --border-primary: #996210;
+  --border-primary-inverse: #f8f2e6;
+  --border-secondary: #f8cd69;
+  --border-secondary-button: #593207;
+  --border-tertiary: #ffffff;
+  --border-action: #996210;
+  --border-action-highlight: #593207;
+  --heading-underline-primary: #f8cd69;
+}
+
+[data-theme="stone"] {
+  --text-primary: #2e271e;
+  --text-primary-inverse: #f3f1ef;
+  --text-secondary-button: #635544;
+  --text-action: #635544;
+  --text-action-highlight: #2e271e;
+  --background-primary: #f3f1ef;
+  --background-primary-inverse: #2e271e;
+  --background-secondary: #ffffff;
+  --background-action: #635544;
+  --background-action-highlight: #2e271e;
+  --background-action-secondary: #f3f1ef;
+  --background-action-secondary-highlight: #ffffff;
+  --background-primary-disabled: #6355444d;
+  --border-primary: #635544;
+  --border-primary-inverse: #f3f1ef;
+  --border-secondary: #aa9e8d;
+  --border-secondary-button: #635544;
+  --border-tertiary: #ffffff;
+  --border-action: #635544;
+  --border-action-highlight: #2e271e;
+  --heading-underline-primary: #aa9e8d;
+}
+
+/* Mapped component tokens */
+:root {
+  /* Mapped - Forms */
+  --input-color-background-default: var(--background-primary);
+  --input-color-background-danger: var(--background-danger-highlight);
+  --input-color-background-disabled: var(--background-tertiary);
+  --input-color-border-default: var(--border-tertiary);
+  --input-color-border-focus: var(--border-action);
+  --input-color-border-danger: var(--border-danger);
+  --input-color-text-default: var(--text-primary);
+  --input-color-text-danger: var(--text-danger);
+  --input-color-icon: var(--text-secondary);
+  --input-radius: 4px;
+  --input-text-font-family: "Kiva Post Grot";
+  --input-text-font-size: 16px;
+  --input-text-font-weight: "Book";
+  --input-text-line-height: 22px;
+  --checkbox-color-background-unchecked: var(--background-primary);
+  --checkbox-color-background-checked: var(--background-action);
+  --checkbox-color-background-disabled: #e0e0e0;
+  --checkbox-color-border-default: var(--border-secondary);
+  --checkbox-color-border-checked: var(--border-action);
+  --checkbox-color-border-danger: var(--border-danger);
+  --checkbox-color-checkmark: var(--text-primary-inverse);
+  --checkbox-color-label: var(--text-primary);
+  --checkbox-radius: 4px;
+  /* Mapped - Tooltip / Chips / Pills */
+  --tooltip-color-background-dark: #212121;
+  --tooltip-color-background-light: #ffffff;
+  --tooltip-color-text-on-dark: #ffffff;
+  --tooltip-color-text-on-light: #212121;
+  --tooltip-radius: 16px;
+  --tooltip-inset: 20px;
+  --chip-color-background-default: var(--background-secondary);
+  --chip-color-background-hover: var(--background-tertiary);
+  --chip-color-text: var(--text-primary);
+  --chip-color-icon: var(--text-primary);
+  --chip-radius: 16px;
+  --chip-inset: 16px;
+  --chip-text-font-family: "Kiva Post Grot";
+  --chip-text-font-size: 16px;
+  --chip-text-font-weight: "Book";
+  --chip-text-line-height: 22px;
+  --pill-color-background: var(--background-secondary);
+  --pill-color-text: var(--text-primary);
+  --pill-radius: 16px;
+  --pill-inset-horizontal: 12px;
+  --pill-inset-vertical: 8px;
+  --pill-text-font-family: "Kiva Post Grot";
+  --pill-text-font-size: 14px;
+  --pill-text-font-weight: "Medium";
+  --pill-text-line-height: 18px;
+  /* Mapped - Lightbox / Loading / Carousel / Avatar */
+  --lightbox-color-background: var(--background-primary);
+  --lightbox-color-text: var(--text-primary);
+  --lightbox-color-close-icon: var(--text-primary);
+  --lightbox-color-close-icon-hover: var(--text-action-highlight);
+  --lightbox-color-backdrop: #000000bf;
+  --lightbox-radius: 16px;
+  --lightbox-text-h2-font-family: "Dovetail MVB";
+  --lightbox-text-h2-font-size: 22px;
+  --lightbox-text-h2-font-weight: "Medium";
+  --lightbox-text-h2-line-height: 31px;
+  --lightbox-text-h2-letter-spacing: -0.22px;
+  --lightbox-text-h3-font-family: "Kiva Post Grot";
+  --lightbox-text-h3-font-size: 20px;
+  --lightbox-text-h3-font-weight: "Medium";
+  --lightbox-text-h3-line-height: 26px;
+  --lightbox-text-h3-letter-spacing: 0px;
+  --lightbox-text-body-font-family: "Kiva Post Grot";
+  --lightbox-text-body-font-size: 16px;
+  --lightbox-text-body-font-weight: "Book";
+  --lightbox-text-body-line-height: 22px;
+  --lightbox-text-body-letter-spacing: 0px;
+  --loadingplaceholder-color-base: var(--background-tertiary);
+  --loadingplaceholder-color-shimmer: var(--background-secondary);
+  --loadingplaceholder-radius: 4px;
+  --loadingspinner-color-default: #2aa967;
+  --loadingspinner-color-track: var(--text-tertiary);
+  --carousel-arrow-icon: var(--text-primary);
+  --carousel-arrow-border: var(--border-primary);
+  --carousel-arrow-background: var(--background-primary);
+  --carousel-arrow-background-subtle: #f5f5f5;
+  --carousel-dot-active: #000000;
+  --carousel-dot-inactive: var(--background-tertiary);
+  --avatar-color-background: #2aa967;
+  --avatar-radius: 9999px;
+  /* Mapped - Navigation */
+  --nav-color-background: var(--background-primary);
+  --nav-color-text-default: var(--text-primary);
+  --nav-color-text-hover: var(--text-action);
+  --nav-color-text-secondary: var(--text-secondary);
+  --nav-color-text-tertiary: var(--text-tertiary);
+  --nav-color-accent: #223829;
+  --nav-color-border: var(--border-tertiary);
+  --nav-color-menu-background: var(--background-primary);
+  --nav-color-menu-item-hover: var(--background-secondary);
+  --nav-color-field-background: var(--background-secondary);
+  --nav-color-icon: var(--text-primary);
+  --nav-color-logo: #2aa967;
+  --nav-dropdown-radius: 8px;
+  --nav-text-link-font-family: "Kiva Post Grot";
+  --nav-text-link-font-size: 16px;
+  --nav-text-link-font-weight: "Medium";
+  --nav-text-link-line-height: 21px;
+  --nav-text-link-letter-spacing: 0px;
+  --footer-color-background: #f5f5f5;
+  --footer-color-heading: var(--text-primary);
+  --footer-color-link: var(--text-action);
+  --footer-color-text-muted: var(--text-secondary);
+  --footer-color-divider: var(--border-tertiary);
+  --footer-color-icon: var(--text-tertiary);
+  --footer-text-heading-font-family: "Kiva Post Grot";
+  --footer-text-heading-font-size: 14px;
+  --footer-text-heading-font-weight: "Medium";
+  --footer-text-heading-line-height: 18px;
+  --footer-text-body-font-family: "Kiva Post Grot";
+  --footer-text-body-font-size: 14px;
+  --footer-text-body-font-weight: "Book";
+  --footer-text-body-line-height: 18px;
+}
+
+[data-button-variant="primary"] {
+  --btn-color-background-default: var(--background-action);
+  --btn-color-background-hover: var(--background-action-highlight);
+  --btn-color-background-active: var(--background-action-highlight);
+  --btn-color-background-disabled: var(--background-primary-disabled);
+  --btn-color-text-default: var(--text-primary-inverse);
+  --btn-color-text-hover: var(--text-primary-inverse);
+  --btn-color-text-active: var(--text-primary-inverse);
+  --btn-color-text-disabled: var(--text-primary-inverse);
+  --btn-color-border-default: #00000000;
+  --btn-color-border-disabled: var(--background-primary-disabled);
+  --btn-color-spinner: #ffffff;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 0px;
+  --btn-border-stroke-weight-hover: 0px;
+  --btn-border-stroke-weight-active: 0px;
+  --btn-border-stroke-weight-loading: 0px;
+}
+
+[data-button-variant="secondary"] {
+  --btn-color-background-default: var(--background-action-secondary);
+  --btn-color-background-hover: var(--background-action-secondary-highlight);
+  --btn-color-background-active: var(--background-secondary);
+  --btn-color-background-disabled: var(--border-primary-inverse);
+  --btn-color-text-default: var(--text-secondary-button);
+  --btn-color-text-hover: var(--text-secondary-button);
+  --btn-color-text-active: var(--text-secondary-button);
+  --btn-color-text-disabled: var(--text-action-disabled);
+  --btn-color-border-default: var(--border-secondary-button);
+  --btn-color-border-disabled: var(--border-secondary-disabled);
+  --btn-color-spinner: #000000;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 1px;
+  --btn-border-stroke-weight-hover: 1px;
+  --btn-border-stroke-weight-active: 1px;
+  --btn-border-stroke-weight-loading: 1px;
+}
+
+[data-button-variant="danger"] {
+  --btn-color-background-default: var(--background-danger);
+  --btn-color-background-hover: var(--background-danger-highlight);
+  --btn-color-background-active: var(--background-danger-highlight);
+  --btn-color-background-disabled: var(--background-danger);
+  --btn-color-text-default: var(--text-danger);
+  --btn-color-text-hover: var(--text-danger);
+  --btn-color-text-active: var(--text-danger);
+  --btn-color-text-disabled: var(--text-danger);
+  --btn-color-border-default: var(--border-danger);
+  --btn-color-border-disabled: var(--border-danger);
+  --btn-color-spinner: #ffffff;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 0px;
+  --btn-border-stroke-weight-hover: 0px;
+  --btn-border-stroke-weight-active: 0px;
+  --btn-border-stroke-weight-loading: 0px;
+}
+
+[data-button-variant="link"] {
+  --btn-color-background-default: var(--background-primary-inverse);
+  --btn-color-background-hover: var(--background-action);
+  --btn-color-background-active: var(--background-action);
+  --btn-color-background-disabled: var(--background-primary-inverse);
+  --btn-color-text-default: var(--text-primary-inverse);
+  --btn-color-text-hover: var(--text-primary-inverse);
+  --btn-color-text-active: var(--text-primary-inverse);
+  --btn-color-text-disabled: var(--text-primary-inverse);
+  --btn-color-border-default: var(--border-action-highlight);
+  --btn-color-border-disabled: var(--border-action-highlight);
+  --btn-color-spinner: #ffffff;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 0px;
+  --btn-border-stroke-weight-hover: 0px;
+  --btn-border-stroke-weight-active: 0px;
+  --btn-border-stroke-weight-loading: 0px;
+}
+
+[data-button-variant="ghost"] {
+  --btn-color-background-default: var(--background-primary);
+  --btn-color-background-hover: var(--background-secondary);
+  --btn-color-background-active: var(--background-secondary);
+  --btn-color-background-disabled: var(--background-primary);
+  --btn-color-text-default: var(--text-primary);
+  --btn-color-text-hover: var(--text-primary);
+  --btn-color-text-active: var(--text-primary);
+  --btn-color-text-disabled: var(--text-primary);
+  --btn-color-border-default: #00000000;
+  --btn-color-border-disabled: #00000000;
+  --btn-color-spinner: #2aa967;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 0px;
+  --btn-border-stroke-weight-hover: 0px;
+  --btn-border-stroke-weight-active: 0px;
+  --btn-border-stroke-weight-loading: 0px;
+}
+
+[data-button-variant="caution"] {
+  --btn-color-background-default: var(--background-caution);
+  --btn-color-background-hover: var(--background-caution-highlight);
+  --btn-color-background-active: var(--background-caution-highlight);
+  --btn-color-background-disabled: var(--background-caution);
+  --btn-color-text-default: var(--text-caution);
+  --btn-color-text-hover: var(--text-caution);
+  --btn-color-text-active: var(--text-caution);
+  --btn-color-text-disabled: var(--text-caution);
+  --btn-color-border-default: var(--border-caution);
+  --btn-color-border-disabled: var(--border-caution);
+  --btn-color-spinner: #000000;
+  --btn-text-font-family: Kiva Post Grot;
+  --btn-text-font-weight: Medium;
+  --btn-text-font-size: 16px;
+  --btn-text-line-height: 21px;
+  --btn-text-letter-spacing: 0px;
+  --btn-inset-lg: 14px;
+  --btn-inset-sm: 8px;
+  --btn-radius-lg: 16px;
+  --btn-radius-sm: 8px;
+  --btn-border-stroke-weight-default: 0px;
+  --btn-border-stroke-weight-hover: 0px;
+  --btn-border-stroke-weight-active: 0px;
+  --btn-border-stroke-weight-loading: 0px;
+}

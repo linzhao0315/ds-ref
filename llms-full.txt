@@ -1,0 +1,552 @@
+# Kiva Ecosystem 2026 Design System — full reference for AI agents
+
+Generated 2026-07-04 from the Figma variable library (Ecosystem 2026 WIP, file TPmBUB4olYPMF6glEhBGDG). This file is the flat, machine-readable rendition of the interactive reference at https://linzhao0315.github.io/ds-ref/ .
+
+## How to use this file
+
+1. NEVER hardcode visual values. Every color, size, radius, spacing, and font in generated UI must map to a token named below.
+2. Prefer the highest applicable layer: component token (button/*, input/*, tooltip/*) → semantic alias (text/*, background/*, border/*) → Global primitive. Use a Global primitive directly only when no alias fits (matches the Figma library convention).
+3. Themes: the five Alias-Color modes (default, green-light, green-dark, marigold, stone) remap the SAME alias names. Generate against alias names, not resolved hexes, and theming works for free. In CSS use the custom properties from tokens.css and switch [data-theme].
+4. Tailwind: the Kiva config prefixes utilities with tw- and maps alias names (tw-bg-primary = background/primary, tw-text-action = text/action). Spacing scale: tw-1 = 8px, tw-0.5 = 4px (NOT the default Tailwind scale). tw-rounded = 16px (NOT 4px).
+5. After generating, audit your output: grep for hex colors, px values not on the 4px grain, font sizes not in the type scale, and border radii not in {0,4,8,12,16,20,24,9999}. Each hit is a defect: replace with a token.
+
+## Component specifications
+
+### Button (KvButton)
+- 6 variants: primary, secondary, danger, link, ghost, caution. 2 sizes: default (48px fixed height) and small (32px). 5 states: default, hover, active, disabled, loading.
+- Geometry: default = 24px horizontal x 8px vertical padding, radius 16, label text/button (Kiva Post Grot Medium 16/21). small = 16x4 padding, radius 8, label text/label (Medium 14/18).
+- All colors per variant x state come from Mapped - Buttons (table below): the variant is the mode.
+- Only secondary has a visible border (1px, border/secondary-button). Other variants carry a transparent border.
+- Disabled = disabled tokens + 40% whole-button opacity (code uses tw-opacity-low). Loading = keep default background, hide label, show spinner; spinner arc color = button/color/spinner (white on primary/danger/link, black on secondary/caution, brand green on ghost); spinner track is always text/tertiary at 30%.
+- Rules: one primary per view; secondary accompanies a primary; danger for destructive, caution for needs-attention, link for navigation-as-button, ghost for lowest emphasis.
+
+### Forms (KvTextInput, KvCheckbox)
+- Text input: fixed 48px height, radius 4 (input/radius), 16px horizontal padding, text/base (Book 16/22). Background background/primary, border border/tertiary (1px), focus ring border/action at 2px, error state = border/danger + background/danger-highlight + text/danger. Disabled background background/tertiary. Leading icon 24px in text/secondary.
+- Checkbox: 20px box, radius 4; unchecked = background/primary + border/secondary; checked = background/action fill + border/action + checkmark text/primary-inverse; disabled background gray/200. Label text/primary; hit area extends across the label row.
+- Always render a visible label (never placeholder-as-label) and pair error color with an error message.
+
+### Tooltip (KvTooltip)
+- THEME-INDEPENDENT by design: exactly two fixed neutral styles, identical across all themes. Dark chip (background #212121 gray/800, text #ffffff) for light surfaces; light chip (background #ffffff, text #212121 gray/800) for dark or photographic surfaces. Contrast 16.1:1 (AAA at any size). Darkest gray instead of pure black to avoid halation on small text.
+- Geometry: radius 16, inset 20, max-width 250, 8px arrow matching the container fill, shadow 0 4 12 shadow/default. Placements: top / bottom / left / right.
+- Not interactive content; shows on hover and focus, dismisses on Esc/blur; role="tooltip" + aria-describedby.
+
+### Chips and Pills (KvChip, KvPill)
+- Chip (dismissible selection): background/secondary, hover background/tertiary, radius 16, inset 16x8, text/base, 16px close icon in text/primary. It is a real button; accessible name must include the value ("Remove filter: Kenya").
+- Pill (static status label): background/secondary, radius 16, inset 12x8, text/label (Medium 14/18), optional 16px leading icon. Never interactive.
+
+### Loading (KvLoadingPlaceholder, KvLoadingSpinner)
+- Placeholder (skeleton): background/tertiary base, radius 4, animated shimmer band of background/secondary (1.5s loop in code). Sized to the content it replaces. Region gets aria-busy.
+- Spinner: sizes 24/32/64, 2px stroke, arc color/brand/default, track text/tertiary at 30% opacity. Inside buttons the arc follows button/color/spinner.
+
+### Lightbox (KvLightbox)
+- Modal over a #000 75% scrim (color/neutral/scrim). Container background/primary, radius 16, widths 888 (desktop) / 600 (tablet) / 320 (mobile, bottom-anchored sheet).
+- Headline levels: H2 = text/headline 2 (Dovetail Medium 22/31) for celebratory moments; H3 = text/title (Grot Medium 20/26) for utilitarian dialogs. Body text/base.
+- Close: 24px icon in a 48px hit area, hover text/action-highlight. Footer: up to two KvButtons (secondary + primary), right-aligned, 20px gap.
+- Focus trapped inside; Esc closes; page behind is inert and scroll-locked; aria-modal="true".
+
+### Navigation (KvNav) and Footer (KvFooter)
+- Nav: white bar (nav/color/background) with bottom border border/tertiary; heights 80 (desktop/tablet) / 64 (mobile). Logo is always color/brand/default. Links are ghost-button styled, text/primary with hover text/action, type text/button (Medium 16/21). Search field uses the form input tokens with background/secondary surface. Dropdown radius 8.
+- Footer: background color/gray/100 (deliberately neutral gray, not the greenish background/secondary), headings text/primary in text/label, links text/action, legal text text/secondary in text/caption, dividers border/tertiary, social icons text/tertiary. Padding 64, gaps 48/32/16/12/8 all on the spacing scale.
+- Both are landmarks (<nav>, <footer>); include a skip-to-content link; basket count announced via aria-label.
+
+### Avatar (KvUserAvatar) and Icons
+- Avatar: full circle (radius/max), 48px base size scaling with context. Anonymous = color/brand/default circle + white Kiva K (60% height). Letter = background/action + first initial. Image = photo clipped to circle, alt "Image of lender".
+- KvMaterialIcon: 24px, fill-current — icons ALWAYS inherit the parent text color and have no tokens of their own. Do not invent icon color tokens.
+
+## Full token tables
+
+### Collection: Global
+
+| token | value | resolves to |
+|---|---|---|
+| `type/font-family/serif` | Dovetail MVB |  |
+| `type/font-family/sans` | Kiva Post Grot |  |
+| `type/font-weight/normal` | Book |  |
+| `type/font-weight/medium` | Medium |  |
+| `type/font-size/jumbo/lg` | 44 |  |
+| `type/font-size/jumbo/md` | 40 |  |
+| `type/font-size/jumbo/sm` | 36 |  |
+| `type/font-size/h1/lg` | 26 |  |
+| `type/font-size/h1/md` | 22 |  |
+| `type/font-size/h1/sm` | 22 |  |
+| `type/font-size/h2/lg` | 22 |  |
+| `type/font-size/h2/md` | 20 |  |
+| `type/font-size/h2/sm` | 20 |  |
+| `type/font-size/h3/lg` | 20 |  |
+| `type/font-size/h3/md` | 18 |  |
+| `type/font-size/h3/sm` | 18 |  |
+| `type/font-size/base/base` | 16 |  |
+| `type/font-size/button/button` | 16 |  |
+| `type/font-size/small/small` | 14 |  |
+| `type/line-height/jumbo/lg` | 57 |  |
+| `type/line-height/jumbo/md` | 52 |  |
+| `type/line-height/jumbo/sm` | 47 |  |
+| `type/line-height/h1/lg` | 36 |  |
+| `type/line-height/h1/md` | 31 |  |
+| `type/line-height/h1/sm` | 31 |  |
+| `type/line-height/h2/lg` | 31 |  |
+| `type/line-height/h2/md` | 26 |  |
+| `type/line-height/h2/sm` | 26 |  |
+| `type/line-height/h3/lg` | 26 |  |
+| `type/line-height/h3/md` | 23 |  |
+| `type/line-height/h3/sm` | 23 |  |
+| `type/line-height/base/lg` | 22 |  |
+| `type/line-height/base/md` | 22 |  |
+| `type/line-height/base/sm` | 22 |  |
+| `type/line-height/button/button` | 21 |  |
+| `type/line-height/upper/upper` | 18 |  |
+| `type/line-height/label/label` | 18 |  |
+| `type/line-height/caption/caption` | 18 |  |
+| `type/letter-spacing/-600` | -0.88 |  |
+| `type/letter-spacing/-500` | -0.8 |  |
+| `type/letter-spacing/-400` | -0.72 |  |
+| `type/letter-spacing/-300` | -0.52 |  |
+| `type/letter-spacing/-200` | -0.22 |  |
+| `type/letter-spacing/-100` | -0.2 |  |
+| `type/letter-spacing/0` | 0 |  |
+| `spacing/scale/0` | 0 |  |
+| `spacing/scale/0-5` | 4 |  |
+| `spacing/scale/1` | 8 |  |
+| `spacing/scale/1-5` | 12 |  |
+| `spacing/scale/2` | 16 |  |
+| `spacing/scale/2-5` | 20 |  |
+| `spacing/scale/3` | 24 |  |
+| `spacing/scale/3-5` | 28 |  |
+| `spacing/scale/4` | 32 |  |
+| `spacing/scale/4-5` | 36 |  |
+| `spacing/scale/5` | 40 |  |
+| `spacing/scale/5-5` | 44 |  |
+| `spacing/scale/6` | 48 |  |
+| `spacing/scale/6-5` | 52 |  |
+| `spacing/scale/7` | 56 |  |
+| `spacing/scale/7-5` | 60 |  |
+| `spacing/scale/8` | 64 |  |
+| `spacing/scale/8-5` | 68 |  |
+| `spacing/scale/9` | 72 |  |
+| `spacing/scale/9-5` | 76 |  |
+| `spacing/scale/10` | 80 |  |
+| `spacing/scale/10-5` | 84 |  |
+| `spacing/scale/11` | 88 |  |
+| `spacing/scale/11-5` | 92 |  |
+| `spacing/scale/12` | 96 |  |
+| `spacing/scale/12-5` | 100 |  |
+| `spacing/scale/13` | 104 |  |
+| `spacing/scale/13-5` | 108 |  |
+| `spacing/scale/14` | 112 |  |
+| `spacing/scale/14-5` | 116 |  |
+| `spacing/scale/15` | 120 |  |
+| `spacing/scale/15-5` | 124 |  |
+| `spacing/scale/16` | 128 |  |
+| `spacing/button/inset-vertical` | 14 |  |
+| `color/neutral/white` | #ffffff |  |
+| `color/neutral/black` | #000000 |  |
+| `color/neutral/transparent` | #00000000 |  |
+| `color/neutral/scrim` | #000000bf |  |
+| `color/gray/800` | #212121 |  |
+| `color/gray/800-1` | #2121214d |  |
+| `color/gray/700` | #454545 |  |
+| `color/gray/600` | #505050 |  |
+| `color/gray/500` | #757575 |  |
+| `color/gray/400` | #9e9e9e |  |
+| `color/gray/300` | #c4c4c4 |  |
+| `color/gray/200` | #e0e0e0 |  |
+| `color/gray/100` | #f5f5f5 |  |
+| `color/gray/50` | #fafafa |  |
+| `color/brand/1000` | #19653e |  |
+| `color/brand/950` | #1b6e43 |  |
+| `color/brand/900` | #1d7748 |  |
+| `color/brand/800` | #228752 |  |
+| `color/brand/700` | #26985d |  |
+| `color/brand/650` | #28a062 |  |
+| `color/brand/default` | #2aa967 |  |
+| `color/brand/550` | #35ad6f |  |
+| `color/brand/500` | #4ab67e |  |
+| `color/brand/400` | #6ac395 |  |
+| `color/brand/300` | #95d4b3 |  |
+| `color/brand/200` | #bfe5d1 |  |
+| `color/brand/100` | #eaf6f0 |  |
+| `color/brand/50` | #f4fbf7 |  |
+| `color/eco-green/1` | #edf4f1 |  |
+| `color/eco-green/2` | #78c79f |  |
+| `color/eco-green/3` | #276a43 |  |
+| `color/eco-green/3-1` | #276a434d |  |
+| `color/eco-green/4` | #223829 |  |
+| `color/eco-green/default` | #2aa967 |  |
+| `color/marigold/1` | #f8f2e6 |  |
+| `color/marigold/2` | #f8cd69 |  |
+| `color/marigold/3` | #996210 |  |
+| `color/marigold/3-1` | #9962104d |  |
+| `color/marigold/4` | #593207 |  |
+| `color/marigold/default` | #f4b539 |  |
+| `color/stone/1` | #f3f1ef |  |
+| `color/stone/2` | #aa9e8d |  |
+| `color/stone/3` | #635544 |  |
+| `color/stone/3-1` | #6355444d |  |
+| `color/stone/4` | #2e271e |  |
+| `color/stone/default` | #dfd0bc |  |
+| `color/desert-rose/1` | #f9f0ef |  |
+| `color/desert-rose/2` | #e0988d |  |
+| `color/desert-rose/3` | #a24536 |  |
+| `color/desert-rose/4` | #5c2a22 |  |
+| `color/desert-rose/default` | #c45f4f |  |
+| `color/shadow/default` | #00000014 |  |
+| `color/shadow/hover` | #00000029 |  |
+| `color/shadow/click-active` | #00000014 |  |
+| `layout/breakpoint/xl` | 1440 |  |
+| `layout/breakpoint/lg` | 1024 |  |
+| `layout/breakpoint/md` | 734 |  |
+| `layout/breakpoint/sm` | 320 |  |
+| `layout/breakpoint/xs` | 0 |  |
+| `layout/page-margin/xl` | 120 |  |
+| `layout/page-margin/lg` | 64 |  |
+| `layout/page-margin/md` | 32 |  |
+| `layout/page-margin/sm` | 20 |  |
+| `layout/page-margin/xs` | 20 |  |
+| `layout/grid-columns/xl` | 12 |  |
+| `layout/grid-columns/lg` | 12 |  |
+| `layout/grid-columns/md` | 8 |  |
+| `layout/grid-columns/sm` | 4 |  |
+| `layout/grid-columns/xs` | 4 |  |
+| `layout/gutter/xl` | 32 |  |
+| `layout/gutter/lg` | 32 |  |
+| `layout/gutter/md` | 24 |  |
+| `layout/gutter/sm` | 16 |  |
+| `layout/gutter/xs` | 16 |  |
+| `layout/content-max-width/xl` | 1200 |  |
+| `layout/content-max-width/lg` | 896 |  |
+| `layout/content-max-width/md` | 670 |  |
+| `layout/content-max-width/sm` | 350 |  |
+| `radius/0` | 0 |  |
+| `radius/100` | 4 |  |
+| `radius/200` | 8 |  |
+| `radius/300` | 12 |  |
+| `radius/400` | 16 |  |
+| `radius/500` | 20 |  |
+| `radius/600` | 24 |  |
+| `radius/max` | 9999 |  |
+| `elevation/x/0` | 0 |  |
+| `elevation/y/100` | 4 |  |
+| `elevation/blur/100` | 12 |  |
+| `elevation/blur/200` | 16 |  |
+| `elevation/spread/0` | 0 |  |
+| `elevation/opacity/100` | 0.08 |  |
+| `elevation/opacity/200` | 0.16 |  |
+| `border/width/0` | 0 |  |
+| `border/width/100` | 1 |  |
+| `border/width/200` | 2 |  |
+| `border/style/dashed/Dash` | 4 |  |
+| `border/style/dashed/Gap` | 2 |  |
+
+### Collection: Alias - Color
+
+| token | default | green-light | green-dark | marigold | stone |
+|---|---|---|---|---|---|
+| `text/primary` | #223829 | #223829 | #edf4f1 | #593207 | #2e271e |
+| `text/primary-inverse` | #edf4f1 | #edf4f1 | #223829 | #f8f2e6 | #f3f1ef |
+| `text/secondary` | #505050 | #505050 | #c4c4c4 | #505050 | #505050 |
+| `text/secondary-button` | #212121 | #212121 | #edf4f1 | #593207 | #635544 |
+| `text/tertiary` | #757575 | #757575 | #e0e0e0 | #757575 | #757575 |
+| `text/action` | #276a43 | #276a43 | #78c79f | #996210 | #635544 |
+| `text/action-highlight` | #223829 | #223829 | #edf4f1 | #593207 | #2e271e |
+| `text/action-disabled` | #2121214d | #2121214d | #2121214d | #2121214d | #2121214d |
+| `text/caution` | #593207 | #593207 | #593207 | #593207 | #593207 |
+| `text/caution-highlight` | #996210 | #996210 | #996210 | #996210 | #996210 |
+| `text/danger` | #5c2a22 | #5c2a22 | #5c2a22 | #5c2a22 | #5c2a22 |
+| `text/danger-highlight` | #a24536 | #a24536 | #a24536 | #a24536 | #a24536 |
+| `background/primary` | #ffffff | #edf4f1 | #223829 | #f8f2e6 | #f3f1ef |
+| `background/primary-inverse` | #223829 | #223829 | #ffffff | #593207 | #2e271e |
+| `background/secondary` | #edf4f1 | #ffffff | #276a43 | #ffffff | #ffffff |
+| `background/tertiary` | #c4c4c4 | #c4c4c4 | #c4c4c4 | #c4c4c4 | #c4c4c4 |
+| `background/action` | #276a43 | #276a43 | #78c79f | #996210 | #635544 |
+| `background/action-highlight` | #223829 | #223829 | #edf4f1 | #593207 | #2e271e |
+| `background/action-secondary` | #ffffff | #edf4f1 | #223829 | #f8f2e6 | #f3f1ef |
+| `background/action-secondary-highlight` | #edf4f1 | #ffffff | #276a43 | #ffffff | #ffffff |
+| `background/primary-disabled` | #276a434d | #276a434d | #276a434d | #9962104d | #6355444d |
+| `background/caution` | #f8cd69 | #f8cd69 | #f8cd69 | #f8cd69 | #f8cd69 |
+| `background/caution-highlight` | #f8f2e6 | #f8f2e6 | #f8f2e6 | #f8f2e6 | #f8f2e6 |
+| `background/danger` | #e0988d | #e0988d | #e0988d | #e0988d | #e0988d |
+| `background/danger-highlight` | #f9f0ef | #f9f0ef | #f9f0ef | #f9f0ef | #f9f0ef |
+| `border/primary` | #505050 | #505050 | #edf4f1 | #996210 | #635544 |
+| `border/primary-inverse` | #ffffff | #ffffff | #223829 | #f8f2e6 | #f3f1ef |
+| `border/secondary` | #757575 | #757575 | #276a43 | #f8cd69 | #aa9e8d |
+| `border/secondary-button` | #212121 | #212121 | #edf4f1 | #593207 | #635544 |
+| `border/secondary-disabled` | #2121214d | #2121214d | #2121214d | #2121214d | #2121214d |
+| `border/tertiary` | #c4c4c4 | #c4c4c4 | #78c79f | #ffffff | #ffffff |
+| `border/action` | #276a43 | #276a43 | #78c79f | #996210 | #635544 |
+| `border/action-highlight` | #223829 | #223829 | #edf4f1 | #593207 | #2e271e |
+| `border/caution` | #f8cd69 | #f8cd69 | #f8cd69 | #f8cd69 | #f8cd69 |
+| `border/caution-highlight` | #f8f2e6 | #f8f2e6 | #f8f2e6 | #f8f2e6 | #f8f2e6 |
+| `border/danger` | #e0988d | #e0988d | #e0988d | #e0988d | #e0988d |
+| `border/danger-highlight` | #f9f0ef | #f9f0ef | #f9f0ef | #f9f0ef | #f9f0ef |
+| `heading-underline/primary` | #2aa967 | #2aa967 | #2aa967 | #f8cd69 | #aa9e8d |
+| `shadow/default` | #00000014 | #00000014 | #00000014 | #00000014 | #00000014 |
+| `shadow/hover` | #00000029 | #00000029 | #00000029 | #00000029 | #00000029 |
+| `shadow/click-active` | #00000014 | #00000014 | #00000014 | #00000014 | #00000014 |
+
+### Collection: Alias - Text/Spacing/Layout
+
+| token | desktop (xl) | desktop (lg) | tablet (md) | mobile (sm) | mobile (xs) |
+|---|---|---|---|---|---|
+| `text/display/font-family` | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} |
+| `text/display/font-size` | {Global::type/font-size/jumbo/lg} | {Global::type/font-size/jumbo/lg} | {Global::type/font-size/jumbo/md} | {Global::type/font-size/jumbo/sm} | {Global::type/font-size/jumbo/sm} |
+| `text/display/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/display/line-height` | {Global::type/line-height/jumbo/lg} | {Global::type/line-height/jumbo/lg} | {Global::type/line-height/jumbo/md} | {Global::type/line-height/jumbo/sm} | {Global::type/line-height/jumbo/sm} |
+| `text/display/letter-spacing` | {Global::type/letter-spacing/-600} | {Global::type/letter-spacing/-600} | {Global::type/letter-spacing/-500} | {Global::type/letter-spacing/-400} | {Global::type/letter-spacing/-400} |
+| `text/headline 1/font-family` | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} |
+| `text/headline 1/font-size` | {Global::type/font-size/h1/lg} | {Global::type/font-size/h1/lg} | {Global::type/font-size/h1/md} | {Global::type/font-size/h1/sm} | {Global::type/font-size/h1/sm} |
+| `text/headline 1/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/headline 1/line-height` | {Global::type/line-height/h1/lg} | {Global::type/line-height/h1/lg} | {Global::type/line-height/h1/md} | {Global::type/line-height/h1/sm} | {Global::type/line-height/h1/sm} |
+| `text/headline 1/letter-spacing` | {Global::type/letter-spacing/-300} | {Global::type/letter-spacing/-300} | {Global::type/letter-spacing/-200} | {Global::type/letter-spacing/-200} | {Global::type/letter-spacing/-200} |
+| `text/headline 2/font-family` | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} | {Global::type/font-family/serif} |
+| `text/headline 2/font-size` | {Global::type/font-size/h2/lg} | {Global::type/font-size/h2/lg} | {Global::type/font-size/h2/md} | {Global::type/font-size/h2/sm} | {Global::type/font-size/h2/sm} |
+| `text/headline 2/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/headline 2/line-height` | {Global::type/line-height/h2/lg} | {Global::type/line-height/h2/lg} | {Global::type/line-height/h2/md} | {Global::type/line-height/h2/sm} | {Global::type/line-height/h2/sm} |
+| `text/headline 2/letter-spacing` | {Global::type/letter-spacing/-200} | {Global::type/letter-spacing/-200} | {Global::type/letter-spacing/-100} | {Global::type/letter-spacing/-100} | {Global::type/letter-spacing/-100} |
+| `text/subheadline/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/subheadline/font-size` | {Global::type/font-size/h3/lg} | {Global::type/font-size/h3/lg} | {Global::type/font-size/h3/md} | {Global::type/font-size/h3/sm} | {Global::type/font-size/h3/sm} |
+| `text/subheadline/font-weight` | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} |
+| `text/subheadline/line-height` | {Global::type/line-height/h3/lg} | {Global::type/line-height/h3/lg} | {Global::type/line-height/h3/md} | {Global::type/line-height/h3/sm} | {Global::type/line-height/h3/sm} |
+| `text/subheadline/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/title/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/title/font-size` | {Global::type/font-size/h3/lg} | {Global::type/font-size/h3/lg} | {Global::type/font-size/h3/md} | {Global::type/font-size/h3/sm} | {Global::type/font-size/h3/sm} |
+| `text/title/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/title/line-height` | {Global::type/line-height/h3/lg} | {Global::type/line-height/h3/lg} | {Global::type/line-height/h3/md} | {Global::type/line-height/h3/sm} | {Global::type/line-height/h3/sm} |
+| `text/title/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/base/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/base/font-size` | {Global::type/font-size/base/base} | {Global::type/font-size/base/base} | {Global::type/font-size/base/base} | {Global::type/font-size/base/base} | {Global::type/font-size/base/base} |
+| `text/base/font-weight` | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} |
+| `text/base/line-height` | {Global::type/line-height/base/lg} | {Global::type/line-height/base/lg} | {Global::type/line-height/base/md} | {Global::type/line-height/base/sm} | {Global::type/line-height/base/sm} |
+| `text/base/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/button/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/button/font-size` | {Global::type/font-size/button/button} | {Global::type/font-size/button/button} | {Global::type/font-size/button/button} | {Global::type/font-size/button/button} | {Global::type/font-size/button/button} |
+| `text/button/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/button/line-height` | {Global::type/line-height/button/button} | {Global::type/line-height/button/button} | {Global::type/line-height/button/button} | {Global::type/line-height/button/button} | {Global::type/line-height/button/button} |
+| `text/button/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/upper/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/upper/font-size` | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} |
+| `text/upper/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/upper/line-height` | {Global::type/line-height/upper/upper} | {Global::type/line-height/upper/upper} | {Global::type/line-height/upper/upper} | {Global::type/line-height/upper/upper} | {Global::type/line-height/upper/upper} |
+| `text/upper/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/label/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/label/font-size` | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} |
+| `text/label/font-weight` | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} | {Global::type/font-weight/medium} |
+| `text/label/line-height` | {Global::type/line-height/label/label} | {Global::type/line-height/label/label} | {Global::type/line-height/label/label} | {Global::type/line-height/label/label} | {Global::type/line-height/label/label} |
+| `text/label/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `text/caption/font-family` | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} | {Global::type/font-family/sans} |
+| `text/caption/font-size` | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} | {Global::type/font-size/small/small} |
+| `text/caption/font-weight` | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} | {Global::type/font-weight/normal} |
+| `text/caption/line-height` | {Global::type/line-height/caption/caption} | {Global::type/line-height/caption/caption} | {Global::type/line-height/caption/caption} | {Global::type/line-height/caption/caption} | {Global::type/line-height/caption/caption} |
+| `text/caption/letter-spacing` | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} | {Global::type/letter-spacing/0} |
+| `spacing/structure/XL` | {Global::spacing/scale/4} | {Global::spacing/scale/4} | {Global::spacing/scale/4} | {Global::spacing/scale/3} | {Global::spacing/scale/3} |
+| `spacing/structure/L` | {Global::spacing/scale/3} | {Global::spacing/scale/3} | {Global::spacing/scale/3} | {Global::spacing/scale/2} | {Global::spacing/scale/2} |
+| `spacing/structure/M` | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} |
+| `spacing/structure/S` | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} |
+| `spacing/component/gap/L` | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} |
+| `spacing/component/gap/M` | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} |
+| `spacing/component/gap/S` | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} |
+| `spacing/component/inset/XL` | {Global::spacing/scale/4} | {Global::spacing/scale/4} | {Global::spacing/scale/3} | {Global::spacing/scale/2-5} | {Global::spacing/scale/2-5} |
+| `spacing/component/inset/L` | {Global::spacing/scale/3} | {Global::spacing/scale/3} | {Global::spacing/scale/3} | {Global::spacing/scale/2-5} | {Global::spacing/scale/2-5} |
+| `spacing/component/inset/M` | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} | {Global::spacing/scale/2} |
+| `spacing/component/inset/S` | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} | {Global::spacing/scale/1} |
+| `spacing/component/inset/XS` | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} |
+| `spacing/micro/micro` | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} | {Global::spacing/scale/0-5} |
+| `layout/breakpoint` | {Global::layout/breakpoint/xl} | {Global::layout/breakpoint/lg} | {Global::layout/breakpoint/md} | {Global::layout/breakpoint/sm} | {Global::layout/breakpoint/xs} |
+| `layout/grid-columns` | {Global::layout/grid-columns/xl} | {Global::layout/grid-columns/lg} | {Global::layout/grid-columns/md} | {Global::layout/grid-columns/sm} | {Global::layout/grid-columns/xs} |
+| `layout/grid-margin` | {Global::layout/page-margin/xl} | {Global::layout/page-margin/lg} | {Global::layout/page-margin/md} | {Global::layout/page-margin/sm} | {Global::layout/page-margin/xs} |
+| `layout/grid-gutter` | {Global::layout/gutter/xl} | {Global::layout/gutter/lg} | {Global::layout/gutter/md} | {Global::layout/gutter/sm} | {Global::layout/gutter/xs} |
+| `layout/content-max-width` | {Global::layout/content-max-width/lg} | {Global::layout/content-max-width/lg} | {Global::layout/content-max-width/md} | {Global::layout/content-max-width/sm} | {Global::layout/content-max-width/sm} |
+
+### Collection: Alias - Radius
+
+| token | value | resolves to |
+|---|---|---|
+| `none` | {Global::radius/0} | 0 |
+| `xs` | {Global::radius/100} | 4 |
+| `sm` | {Global::radius/200} | 8 |
+| `md` | {Global::radius/300} | 12 |
+| `base` | {Global::radius/400} | 16 |
+| `lg` | {Global::radius/500} | 20 |
+| `xl` | {Global::radius/600} | 24 |
+| `full` | {Global::radius/max} | 9999 |
+
+### Collection: Alias - Border
+
+| token | width | dash | gap |
+|---|---|---|---|
+| `solid/default` | 1 | 1 | 1 |
+| `solid/hover` | 1 | None | None |
+| `solid/active` | 1 | None | None |
+| `solid/emphasis` | 2 | 2 | 2 |
+| `dashed/dashed` | 2 | 4 | 2 |
+| `solid/secondary-disabled` | 1 | 0 | 0 |
+
+### Collection: Alias - Elevation
+
+| token | y | Blur | Spread | Opacity |
+|---|---|---|---|---|
+| `default` | 4 | 12 | 0 | 0.08 |
+| `hover` | 4 | 16 | 0 | 0.16 |
+| `click-active` | 4 | 12 | 0 | 0.08 |
+
+### Collection: Mapped - Buttons
+
+| token | primary | secondary | danger | link | ghost | caution |
+|---|---|---|---|---|---|---|
+| `button/color/background/default` | #276a43 | #ffffff | #e0988d | #223829 | #ffffff | #f8cd69 |
+| `button/color/background/hover` | #223829 | #edf4f1 | #f9f0ef | #276a43 | #edf4f1 | #f8f2e6 |
+| `button/color/background/active` | #223829 | #edf4f1 | #f9f0ef | #276a43 | #edf4f1 | #f8f2e6 |
+| `button/color/background/disabled` | #276a434d | #ffffff | #e0988d | #223829 | #ffffff | #f8cd69 |
+| `button/color/text/default` | #edf4f1 | #212121 | #5c2a22 | #edf4f1 | #223829 | #593207 |
+| `button/color/text/hover` | #edf4f1 | #212121 | #5c2a22 | #edf4f1 | #223829 | #593207 |
+| `button/color/text/active` | #edf4f1 | #212121 | #5c2a22 | #edf4f1 | #223829 | #593207 |
+| `button/color/text/disabled` | #edf4f1 | #2121214d | #5c2a22 | #edf4f1 | #223829 | #593207 |
+| `button/color/border/default` | #00000000 | #212121 | #e0988d | #223829 | #00000000 | #f8cd69 |
+| `button/color/border/disabled` | #276a434d | #2121214d | #e0988d | #223829 | #00000000 | #f8cd69 |
+| `button/color/spinner` | #ffffff | #000000 | #ffffff | #ffffff | #2aa967 | #000000 |
+| `button/text/font-family` | Kiva Post Grot | Kiva Post Grot | Kiva Post Grot | Kiva Post Grot | Kiva Post Grot | Kiva Post Grot |
+| `button/text/font-weight` | Medium | Medium | Medium | Medium | Medium | Medium |
+| `button/text/font-size` | 16 | 16 | 16 | 16 | 16 | 16 |
+| `button/text/line-height` | 21 | 21 | 21 | 21 | 21 | 21 |
+| `button/text/letter-spacing` | 0 | 0 | 0 | 0 | 0 | 0 |
+| `button/inset/lg` | 14 | 14 | 14 | 14 | 14 | 14 |
+| `button/inset/sm` | 8 | 8 | 8 | 8 | 8 | 8 |
+| `button/radius/lg` | 16 | 16 | 16 | 16 | 16 | 16 |
+| `button/radius/sm` | 8 | 8 | 8 | 8 | 8 | 8 |
+| `button/border stroke weight/default` | 0 | 1 | 0 | 0 | 0 | 0 |
+| `button/border stroke weight/hover` | 0 | 1 | 0 | 0 | 0 | 0 |
+| `button/border stroke weight/active` | 0 | 1 | 0 | 0 | 0 | 0 |
+| `button/border stroke weight/loading` | 0 | 1 | 0 | 0 | 0 | 0 |
+
+### Collection: Mapped - Forms
+
+| token | value | resolves to |
+|---|---|---|
+| `input/color/background/default` | {Alias - Color::background/primary} | #ffffff |
+| `input/color/background/danger` | {Alias - Color::background/danger-highlight} | #f9f0ef |
+| `input/color/background/disabled` | {Alias - Color::background/tertiary} | #c4c4c4 |
+| `input/color/border/default` | {Alias - Color::border/tertiary} | #c4c4c4 |
+| `input/color/border/focus` | {Alias - Color::border/action} | #276a43 |
+| `input/color/border/danger` | {Alias - Color::border/danger} | #e0988d |
+| `input/color/text/default` | {Alias - Color::text/primary} | #223829 |
+| `input/color/text/danger` | {Alias - Color::text/danger} | #5c2a22 |
+| `input/color/icon` | {Alias - Color::text/secondary} | #505050 |
+| `input/radius` | {Global::radius/100} | 4 |
+| `input/text/font-family` | {Alias - Text/Spacing/Layout::text/base/font-family} | Kiva Post Grot |
+| `input/text/font-size` | {Alias - Text/Spacing/Layout::text/base/font-size} | 16 |
+| `input/text/font-weight` | {Alias - Text/Spacing/Layout::text/base/font-weight} | Book |
+| `input/text/line-height` | {Alias - Text/Spacing/Layout::text/base/line-height} | 22 |
+| `checkbox/color/background/unchecked` | {Alias - Color::background/primary} | #ffffff |
+| `checkbox/color/background/checked` | {Alias - Color::background/action} | #276a43 |
+| `checkbox/color/background/disabled` | {Global::color/gray/200} | #e0e0e0 |
+| `checkbox/color/border/default` | {Alias - Color::border/secondary} | #757575 |
+| `checkbox/color/border/checked` | {Alias - Color::border/action} | #276a43 |
+| `checkbox/color/border/danger` | {Alias - Color::border/danger} | #e0988d |
+| `checkbox/color/checkmark` | {Alias - Color::text/primary-inverse} | #edf4f1 |
+| `checkbox/color/label` | {Alias - Color::text/primary} | #223829 |
+| `checkbox/radius` | {Global::radius/100} | 4 |
+
+### Collection: Mapped - Tooltip / Chips / Pills
+
+| token | value | resolves to |
+|---|---|---|
+| `tooltip/color/background/dark` | {Global::color/gray/800} | #212121 |
+| `tooltip/color/background/light` | {Global::color/neutral/white} | #ffffff |
+| `tooltip/color/text/on-dark` | {Global::color/neutral/white} | #ffffff |
+| `tooltip/color/text/on-light` | {Global::color/gray/800} | #212121 |
+| `tooltip/radius` | {Global::radius/400} | 16 |
+| `tooltip/inset` | {Global::spacing/scale/2-5} | 20 |
+| `chip/color/background/default` | {Alias - Color::background/secondary} | #edf4f1 |
+| `chip/color/background/hover` | {Alias - Color::background/tertiary} | #c4c4c4 |
+| `chip/color/text` | {Alias - Color::text/primary} | #223829 |
+| `chip/color/icon` | {Alias - Color::text/primary} | #223829 |
+| `chip/radius` | {Global::radius/400} | 16 |
+| `chip/inset` | {Alias - Text/Spacing/Layout::spacing/component/inset/M} | 16 |
+| `chip/text/font-family` | {Alias - Text/Spacing/Layout::text/base/font-family} | Kiva Post Grot |
+| `chip/text/font-size` | {Alias - Text/Spacing/Layout::text/base/font-size} | 16 |
+| `chip/text/font-weight` | {Alias - Text/Spacing/Layout::text/base/font-weight} | Book |
+| `chip/text/line-height` | {Alias - Text/Spacing/Layout::text/base/line-height} | 22 |
+| `pill/color/background` | {Alias - Color::background/secondary} | #edf4f1 |
+| `pill/color/text` | {Alias - Color::text/primary} | #223829 |
+| `pill/radius` | {Global::radius/400} | 16 |
+| `pill/inset-horizontal` | {Global::spacing/scale/1-5} | 12 |
+| `pill/inset-vertical` | {Alias - Text/Spacing/Layout::spacing/component/inset/S} | 8 |
+| `pill/text/font-family` | {Alias - Text/Spacing/Layout::text/label/font-family} | Kiva Post Grot |
+| `pill/text/font-size` | {Alias - Text/Spacing/Layout::text/label/font-size} | 14 |
+| `pill/text/font-weight` | {Alias - Text/Spacing/Layout::text/label/font-weight} | Medium |
+| `pill/text/line-height` | {Alias - Text/Spacing/Layout::text/label/line-height} | 18 |
+
+### Collection: Mapped - Lightbox / Loading / Carousel / Avatar
+
+| token | value | resolves to |
+|---|---|---|
+| `lightbox/color/background` | {Alias - Color::background/primary} | #ffffff |
+| `lightbox/color/text` | {Alias - Color::text/primary} | #223829 |
+| `lightbox/color/close-icon` | {Alias - Color::text/primary} | #223829 |
+| `lightbox/color/close-icon-hover` | {Alias - Color::text/action-highlight} | #223829 |
+| `lightbox/color/backdrop` | {Global::color/neutral/scrim} | #000000bf |
+| `lightbox/radius` | {Global::radius/400} | 16 |
+| `lightbox/text/h2/font-family` | {Alias - Text/Spacing/Layout::text/headline 2/font-family} | Dovetail MVB |
+| `lightbox/text/h2/font-size` | {Alias - Text/Spacing/Layout::text/headline 2/font-size} | 22 |
+| `lightbox/text/h2/font-weight` | {Alias - Text/Spacing/Layout::text/headline 2/font-weight} | Medium |
+| `lightbox/text/h2/line-height` | {Alias - Text/Spacing/Layout::text/headline 2/line-height} | 31 |
+| `lightbox/text/h2/letter-spacing` | {Alias - Text/Spacing/Layout::text/headline 2/letter-spacing} | -0.22 |
+| `lightbox/text/h3/font-family` | {Alias - Text/Spacing/Layout::text/title/font-family} | Kiva Post Grot |
+| `lightbox/text/h3/font-size` | {Alias - Text/Spacing/Layout::text/title/font-size} | 20 |
+| `lightbox/text/h3/font-weight` | {Alias - Text/Spacing/Layout::text/title/font-weight} | Medium |
+| `lightbox/text/h3/line-height` | {Alias - Text/Spacing/Layout::text/title/line-height} | 26 |
+| `lightbox/text/h3/letter-spacing` | {Alias - Text/Spacing/Layout::text/title/letter-spacing} | 0 |
+| `lightbox/text/body/font-family` | {Alias - Text/Spacing/Layout::text/base/font-family} | Kiva Post Grot |
+| `lightbox/text/body/font-size` | {Alias - Text/Spacing/Layout::text/base/font-size} | 16 |
+| `lightbox/text/body/font-weight` | {Alias - Text/Spacing/Layout::text/base/font-weight} | Book |
+| `lightbox/text/body/line-height` | {Alias - Text/Spacing/Layout::text/base/line-height} | 22 |
+| `lightbox/text/body/letter-spacing` | {Alias - Text/Spacing/Layout::text/base/letter-spacing} | 0 |
+| `loadingplaceholder/color/base` | {Alias - Color::background/tertiary} | #c4c4c4 |
+| `loadingplaceholder/color/shimmer` | {Alias - Color::background/secondary} | #edf4f1 |
+| `loadingplaceholder/radius` | {Global::radius/100} | 4 |
+| `loadingspinner/color/default` | {Global::color/brand/default} | #2aa967 |
+| `loadingspinner/color/track` | {Alias - Color::text/tertiary} | #757575 |
+| `carousel/arrow/icon` | {Alias - Color::text/primary} | #223829 |
+| `carousel/arrow/border` | {Alias - Color::border/primary} | #505050 |
+| `carousel/arrow/background` | {Alias - Color::background/primary} | #ffffff |
+| `carousel/arrow/background-subtle` | {Global::color/gray/100} | #f5f5f5 |
+| `carousel/dot/active` | {Global::color/neutral/black} | #000000 |
+| `carousel/dot/inactive` | {Alias - Color::background/tertiary} | #c4c4c4 |
+| `avatar/color/background` | {Global::color/brand/default} | #2aa967 |
+| `avatar/radius` | {Global::radius/max} | 9999 |
+
+### Collection: Mapped - Navigation
+
+| token | value | resolves to |
+|---|---|---|
+| `nav/color/background` | {Alias - Color::background/primary} | #ffffff |
+| `nav/color/text/default` | {Alias - Color::text/primary} | #223829 |
+| `nav/color/text/hover` | {Alias - Color::text/action} | #276a43 |
+| `nav/color/text/secondary` | {Alias - Color::text/secondary} | #505050 |
+| `nav/color/text/tertiary` | {Alias - Color::text/tertiary} | #757575 |
+| `nav/color/accent` | {Global::color/eco-green/4} | #223829 |
+| `nav/color/border` | {Alias - Color::border/tertiary} | #c4c4c4 |
+| `nav/color/menu-background` | {Alias - Color::background/primary} | #ffffff |
+| `nav/color/menu-item-hover` | {Alias - Color::background/secondary} | #edf4f1 |
+| `nav/color/field-background` | {Alias - Color::background/secondary} | #edf4f1 |
+| `nav/color/icon` | {Alias - Color::text/primary} | #223829 |
+| `nav/color/logo` | {Global::color/brand/default} | #2aa967 |
+| `nav/dropdown/radius` | {Global::radius/200} | 8 |
+| `nav/text/link/font-family` | {Alias - Text/Spacing/Layout::text/button/font-family} | Kiva Post Grot |
+| `nav/text/link/font-size` | {Alias - Text/Spacing/Layout::text/button/font-size} | 16 |
+| `nav/text/link/font-weight` | {Alias - Text/Spacing/Layout::text/button/font-weight} | Medium |
+| `nav/text/link/line-height` | {Alias - Text/Spacing/Layout::text/button/line-height} | 21 |
+| `nav/text/link/letter-spacing` | {Alias - Text/Spacing/Layout::text/button/letter-spacing} | 0 |
+| `footer/color/background` | {Global::color/gray/100} | #f5f5f5 |
+| `footer/color/heading` | {Alias - Color::text/primary} | #223829 |
+| `footer/color/link` | {Alias - Color::text/action} | #276a43 |
+| `footer/color/text-muted` | {Alias - Color::text/secondary} | #505050 |
+| `footer/color/divider` | {Alias - Color::border/tertiary} | #c4c4c4 |
+| `footer/color/icon` | {Alias - Color::text/tertiary} | #757575 |
+| `footer/text/heading/font-family` | {Alias - Text/Spacing/Layout::text/label/font-family} | Kiva Post Grot |
+| `footer/text/heading/font-size` | {Alias - Text/Spacing/Layout::text/label/font-size} | 14 |
+| `footer/text/heading/font-weight` | {Alias - Text/Spacing/Layout::text/label/font-weight} | Medium |
+| `footer/text/heading/line-height` | {Alias - Text/Spacing/Layout::text/label/line-height} | 18 |
+| `footer/text/body/font-family` | {Alias - Text/Spacing/Layout::text/caption/font-family} | Kiva Post Grot |
+| `footer/text/body/font-size` | {Alias - Text/Spacing/Layout::text/caption/font-size} | 14 |
+| `footer/text/body/font-weight` | {Alias - Text/Spacing/Layout::text/caption/font-weight} | Book |
+| `footer/text/body/line-height` | {Alias - Text/Spacing/Layout::text/caption/line-height} | 18 |

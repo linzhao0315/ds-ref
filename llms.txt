@@ -1,0 +1,26 @@
+# Kiva Ecosystem 2026 Design System
+
+> The canonical token and component reference for the Kiva product platform. One source of truth in three renditions: interactive HTML for humans, JSON/CSS for build tools, markdown for AI agents. All values are exported from the Figma variable library (file TPmBUB4olYPMF6glEhBGDG) and cross-checked against @kiva/kv-components code.
+
+Key rules for generating Kiva UI:
+- Never hardcode a color, size, radius, or font value. Every visual attribute must resolve to a named token from this system.
+- Token chain: component token (button/*, input/*, tooltip/*...) → semantic alias (text/*, background/*, border/*) → Global primitive. Bind at the highest layer that exists for your case.
+- Five color themes (default, green-light, green-dark, marigold, stone) switch by remapping alias tokens; component and code never reference theme-specific values directly.
+- Exception: tooltips are theme-independent by design (two fixed neutral styles).
+- Typography: Dovetail MVB (serif) for display/headline 1/headline 2 only; Kiva Post Grot for everything else. 10 text styles, responsive per breakpoint.
+- Spacing: 4px grain. Semantic tokens (structure/*, component/gap/*, component/inset/*) preferred over raw scale steps.
+
+## Machine endpoints
+
+- [tokens.json](https://linzhao0315.github.io/ds-ref/tokens.json): full variable library — Global primitives, Alias semantic layer (5 theme modes), Mapped component layer (buttons, forms, tooltip, chips, pills, loading, carousel, lightbox, navigation, footer, avatar). Aliases preserved as {Collection::token} references, resolved values included.
+- [tokens.css](https://linzhao0315.github.io/ds-ref/tokens.css): the same tokens as CSS custom properties; themes via [data-theme], button variants via [data-button-variant].
+- [llms-full.txt](https://linzhao0315.github.io/ds-ref/llms-full.txt): complete rules + component specifications + full token tables in one flat markdown file. Load this when generating or auditing Kiva UI.
+
+## Human reference
+
+- [Interactive reference](https://linzhao0315.github.io/ds-ref/): browsable typography, color (with per-theme values and contrast checker), spacing, layout grid, radius, border, elevation, buttons and components.
+
+## Related sources
+
+- [@kiva/kv-tokens](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-tokens): the shipped token package (code may temporarily lag Figma).
+- [kiva-design-system skill](https://github.com/kiva/kv-ui-elements/tree/main/%40kiva/kv-skills/design-system/skills/kiva-design-system): agent skill with per-category sub-skills; install in your AI tool and use it as generation guidance plus a cleanup/audit pass.
